@@ -200,7 +200,8 @@
       background: #FCD34D !important;
       color: #0A0F2E !important
     }
-     .nav-btn-amber {
+
+    .nav-btn-amber {
       background: #F59E0B;
       color: #0A0F2E !important;
       padding: 9px 22px;
@@ -423,8 +424,8 @@
     .card-photo {
       position: relative;
       background: var(--ink-2);
-      height: 260px;
       overflow: hidden;
+      height: 437px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -444,7 +445,7 @@
     }
 
     .card-initials {
-      position: relative;
+      position: absolute;
       z-index: 2;
       font-family: 'Manrope', sans-serif;
       font-weight: 800;
@@ -457,12 +458,10 @@
 
     /* When a real photo is loaded it overrides the initials */
     .card-photo img {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: fill;
-      object-position: top center;
+      height: auto;
       z-index: 3;
       opacity: 0;
       transition: opacity .3s;
@@ -793,7 +792,7 @@
       <a href="products.html">Our Products</a>
       <a href="clinical.html">Clinical</a>
       <a href="resources.html">Resources</a>
-      <a href="resources.html#samples" class="nav-btn-outline">Order Samples</a>
+      <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
       <a href="contact.html" class="nav-btn">Contact Us</a>
     </div>
   </nav>
