@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Alera | Alera Medtech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand: #003AF3;
+            --brand-mid: #2F5FF5;
+            --brand-lite: #6B8EF8;
+            --brand-tint: #EEF1FF;
+            --brand-soft: #C8D2FB;
+            --ink: #080E24;
+            --ink-2: #111830;
+            --slate: #56607A;
+            --mist: #F4F5FA;
+            --white: #FFFFFF;
+            --border: #DDE1F0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .nav-logo-img {
+            height: 28px;
+            width: auto;
+            display: block
+        }
+
+        .footer-logo-img {
+            height: 26px;
+            width: auto;
+            display: block
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .syne {
+            font-family: 'Manrope', sans-serif
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 56px;
+            height: 64px;
+            background: rgba(8, 14, 36, .92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, .07)
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center
+        }
+
+        .nav-links a {
+            font-size: .78rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+            transition: color .18s
+        }
+
+        .nav-links a:hover {
+            color: #fff
+        }
+
+        .nav-links a.active {
+            color: #fff
+        }
+
+        .nav-btn {
+            background: var(--brand);
+            color: #fff !important;
+            padding: 9px 22px;
+            border-radius: 5px;
+            letter-spacing: .05em !important;
+            transition: background .18s !important
+        }
+
+        .nav-btn:hover {
+            background: var(--brand-mid) !important
+        }
+
+        .nav-btn-outline {
+            background: #F59E0B;
+            color: #0A0F2E !important;
+            padding: 9px 22px;
+            border-radius: 5px;
+            letter-spacing: .05em !important;
+            border: none;
+            font-weight: 700 !important;
+            transition: background .18s !important
+        }
+
+        .nav-btn-outline:hover {
+            background: #FCD34D !important;
+            color: #0A0F2E !important
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            min-height: 380px;
+            background: var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 120px 56px 72px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(0, 58, 243, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 58, 243, .07) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px)
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            right: -100px;
+            background: rgba(0, 58, 243, .18)
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -80px;
+            left: 10%;
+            background: rgba(0, 58, 243, .10)
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp .6s .1s ease forwards
+        }
+
+        .kicker-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--brand);
+            animation: pulse 2s ease infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.6)
+            }
+        }
+
+        .kicker-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--brand-lite)
+        }
+
+        .page-hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.8rem, 5vw, 4.4rem);
+            color: #fff;
+            line-height: 1.12;
+            letter-spacing: -.02em;
+            max-width: 800px;
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeUp .65s .2s ease forwards
+        }
+
+        .page-hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--brand-mid), var(--brand-lite));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        .page-hero-sub {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .52);
+            max-width: 700px;
+            opacity: 0;
+            animation: fadeUp .65s .3s ease forwards
+        }
+
+        /* CONTENT SECTIONS */
+        section {
+            padding: 88px 56px
+        }
+
+        section.alt {
+            background: var(--mist)
+        }
+
+        .sec-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .sec-label-line {
+            width: 20px;
+            height: 2px;
+            background: var(--brand)
+        }
+
+        .sec-label-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--brand)
+        }
+
+        .sec-title {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.9rem, 3vw, 2.75rem);
+            letter-spacing: -.02em;
+            color: var(--ink);
+            line-height: 1.18;
+            margin-bottom: 24px
+        }
+
+        .sec-body {
+            font-size: .98rem;
+            line-height: 1.8;
+            color: var(--slate);
+            /* max-width: 800px */
+        }
+
+        .sec-body p {
+            margin-bottom: 20px
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start
+        }
+
+        .priority-card,
+        .philosophy-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform .2s, border-color .2s
+        }
+
+        .priority-card:hover,
+        .philosophy-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-soft)
+        }
+
+        .card-title {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--ink);
+            margin-bottom: 12px
+        }
+
+        .card-text {
+            font-size: .9rem;
+            line-height: 1.6;
+            color: var(--slate)
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink-2);
+            padding: 48px 56px 36px
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            margin-bottom: 32px
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px
+        }
+
+        .footer-tagline {
+            font-size: .85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .38);
+            max-width: 260px
+        }
+
+        .footer-col-title {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 16px
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: .83rem;
+            color: rgba(255, 255, 255, .45);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color .16s
+        }
+
+        .footer-col a:hover {
+            color: var(--brand-lite)
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px
+        }
+
+        .footer-copy {
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .25)
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px
+        }
+
+        .footer-legal a {
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .25);
+            text-decoration: none;
+            transition: color .16s
+        }
+
+        .footer-legal a:hover {
+            color: rgba(255, 255, 255, .6)
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* --- DROPDOWN NAV --- */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--ink-2);
+            min-width: 180px;
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-radius: 6px;
+            padding: 12px 0;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .dropdown-content a {
+            color: rgba(255, 255, 255, 0.6) !important;
+            padding: 10px 20px !important;
+            text-decoration: none;
+            display: block;
+            font-size: 0.72rem !important;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff !important;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-links .dropdown>a {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links .dropdown>a::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid currentColor;
+            opacity: 0.6;
+        }
+         .nav-btn-amber {
+        background: #F59E0B;
+        color: #0A0F2E !important;
+        padding: 9px 22px;
+        border-radius: 5px;
+        font-weight: 700 !important
+        }
+
+        .nav-btn-amber:hover {
+        background: #FCD34D !important
+        }
+
+        /* ─── TABS SYSTEM ────────────────────────────────────────── */
+        .tabs-section {
+            padding: 88px 56px;
+            /* max-width: 1200px; */
+            margin: 0 auto;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 48px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 18px 0;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--slate);
+            cursor: pointer;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--brand);
+        }
+
+        .tab-btn.active {
+            color: var(--brand);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--brand);
+            box-shadow: 0 0 12px rgba(0, 58, 243, 0.4);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: tabFade 0.5s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        @keyframes tabFade {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content-left h3 {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--ink);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .tab-content-left p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--slate);
+            margin-bottom: 24px;
+        }
+
+        .tab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tab-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 18px;
+            background: var(--mist);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tab-item:hover {
+            background: var(--white);
+            box-shadow: 0 8px 32px rgba(0, 58, 243, 0.06);
+            border-color: var(--brand-soft);
+        }
+
+        .tab-item-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--brand-tint);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand);
+            flex-shrink: 0;
+        }
+
+        .tab-item-content strong {
+            display: block;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+
+        .tab-item-content span {
+            font-size: 0.86rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        .tab-closing {
+            margin-top: 28px;
+            font-style: italic;
+            color: var(--slate);
+            font-size: 0.92rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .tab-pane.active {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .tabs-nav {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAALWCAYAAAAeWQjDAAAxdklEQVR42u3dW24juxIl0O2Cfz0hzx+ekAfg+1Gn6pZfsqRMZpIRawGN/mmg75GTwU1upSoBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD42YOPAAA4xfPrmw+BXbw8ybQAAAAAwC5++QgAAAAAAAAAQIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAAAEkU6AAAAAAAAACQRIEOAAAAAAAA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"
+                alt="Alera Medtech" class="nav-logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="about.html" class="active">About Us</a>
+                <div class="dropdown-content">
+                    <a href="about.html">About Alera</a>
+                    <a href="our-team.html">Our Team</a>
+                </div>
+            </div>
+            <a href="products.html">Our Products</a>
+            <a href="clinical.html">Clinical</a>
+            <a href="resources.html">Resources</a>
+            <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
+            <a href="contact.html" class="nav-btn">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="hero-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="hero-kicker">
+            <div class="kicker-dot"></div>
+            <span class="kicker-text">About Alera</span>
+        </div>
+        <h1 class="syne">Alera Medtech:<br><em>Innovation with Purpose.</em></h1>
+        <p class="page-hero-sub">Alera Medtech is committed to bringing real innovation to medical devices that
+            clinicians and patients depend on every day, with a particular focus on neurology and vascular access.</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section>
+        <div class="sec-label">
+            <div class="sec-label-line"></div><span class="sec-label-text">The Challenge</span>
+        </div>
+        <div class="grid-2">
+            <div class="sec-body">
+                <p>In these high-stakes fields, many core devices used routinely such as hypodermic needle electrodes,
+                    IONM electrodes, catheter securement devices, prefilled syringes or infection control caps have
+                    changed very little over the past several decades. While other areas of patient care have made
+                    tremendous strides, these essential devices have not kept pace. The innovation has been incremental
+                    at best and stagnant at worst.</p>
+                <p><strong>We set out to change this.</strong></p>
+            </div>
+            <div class="sec-body">
+                <p>Our focus is on high-impact categories in neurology and vascular access that remain under-innovated
+                    despite their widespread, daily use. We apply modern engineering, advanced materials, thoughtful
+                    clinician-centered design, and strong intellectual property to reimagine these products entirely.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIORITIES -->
+    <section class="alt">
+        <div class="sec-label">
+            <div class="sec-label-line"></div><span class="sec-label-text">Our Priorities</span>
+        </div>
+        <h2 class="sec-title syne">How we follow our mission.</h2>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+            <div class="priority-card">
+                <div class="card-title">Focused Innovation</div>
+                <div class="card-text">Target segments that serve as the foundation of neurological and vascular access
+                    but have seen limited meaningful progress.</div>
+            </div>
+            <div class="priority-card">
+                <div class="card-title">Better Design & Performance</div>
+                <div class="card-text">Redesign with meaningful enhancements in usability, clinical outcomes, signal
+                    accuracy, and seamless integration into fast-paced workflows.</div>
+            </div>
+            <div class="priority-card">
+                <div class="card-title">Efficient Manufacturing</div>
+                <div class="card-text">Scale manufacturing in ways that drive sustainable cost efficiencies.</div>
+            </div>
+            <div class="priority-card">
+                <div class="priority-card">
+                    <div class="card-title">Affordable Quality</div>
+                    <div class="card-text">Offer these improved devices at affordable prices, making better quality
+                        accessible without any drop in standards.</div>
+                </div>
+            </div>
+    </section>
+
+    <!-- ── WHAT WE BUILD TABS ── -->
+    <section class="tabs-section">
+        <div class="sec-label">
+            <div class="sec-label-line"></div><span class="sec-label-text">What We Build</span>
+        </div>
+        <h2 class="sec-title syne">Advancing care quickly.</h2>
+        <div class="sec-body" style="margin-bottom: 48px;">
+            <p>By streamlining development of neurology and vascular access devices and avoiding traditional delays, we
+                bring these advancements to market more quickly and effectively. This leads to fewer complications,
+                reduced system costs, greater efficiency for neurologists, intensivists, and nursing teams, and stronger
+                outcomes for patients.</p>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'vascular-tab')">Vascular Access</button>
+                <button class="tab-btn" onclick="openTab(event, 'neurology-tab')">Neurology</button>
+            </div>
+
+            <!-- VASCULAR TAB -->
+            <div id="vascular-tab" class="tab-pane active">
+                <div class="tab-content-left">
+                    <h3>Vascular Access</h3>
+                    <p>Alera develops advanced securement and infusion solutions designed to reduce complications and
+                        improve workflow efficiency.</p>
+                    <div class="tab-closing">
+                        These solutions help prevent dislodgement and migration while preventing infections, supporting
+                        comfort and enhancing clinical efficiency.
+                    </div>
+                </div>
+                <div class="tab-list">
+                    <div class="tab-item">
+                        <div class="tab-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <div class="tab-item-content">
+                            <strong>Alera Medtech Securement Systems</strong>
+                            <span>Featuring SafeTrak Strain Relief Technology for tubing and catheter stability.</span>
+                        </div>
+                    </div>
+                    <div class="tab-item">
+                        <div class="tab-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 2v8l-8 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2z" />
+                                <path d="M2 10l8 4v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8z" />
+                                <path d="M22 2v8l-8 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </div>
+                        <div class="tab-item-content">
+                            <strong>Dermaflush and Duoflush</strong>
+                            <span>Next-generation saline flush syringes designed for safety, performance, and ease of
+                                use.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEUROLOGY TAB -->
+            <div id="neurology-tab" class="tab-pane">
+                <div class="tab-content-left">
+                    <h3>Neurology</h3>
+                    <p>Cernode range of neurology products support accurate and reliable neurodiagnostic recording and
+                        monitoring.</p>
+                    <div class="tab-closing">
+                        Each device is engineered for consistent signal capture, user-friendly application, and patient
+                        comfort.
+                    </div>
+                </div>
+                <div class="tab-list">
+                    <div class="tab-item">
+                        <div class="tab-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg>
+                        </div>
+                        <div class="tab-item-content">
+                            <strong>Hypodermic needle electrodes</strong>
+                            <span>Engineered for precision, consistent signal quality, and reduced patient
+                                discomfort.</span>
+                        </div>
+                    </div>
+                    <div class="tab-item">
+                        <div class="tab-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                <line x1="9" y1="9" x2="9.01" y2="9" />
+                                <line x1="15" y1="9" x2="15.01" y2="9" />
+                            </svg>
+                        </div>
+                        <div class="tab-item-content">
+                            <strong>EEG & EMG electrodes</strong>
+                            <span>Optimized for ease of use and high recording accuracy in various clinical
+                                environments.</span>
+                        </div>
+                    </div>
+                    <div class="tab-item">
+                        <div class="tab-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <div class="tab-item-content">
+                            <strong>IONM electrodes and accessories</strong>
+                            <span>Comprehensive suite of electrodes for intraoperative neurophysiological
+                                monitoring.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="alt">
+        <div class="sec-label">
+            <div class="sec-label-line"></div><span class="sec-label-text">Our Philosophy</span>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="philosophy-card">
+                <div class="card-title">Simplicity First</div>
+                <div class="card-text">Devices should support clinicians and simplify care.</div>
+            </div>
+            <div class="philosophy-card">
+                <div class="card-title">Protect the Patient</div>
+                <div class="card-text">Safety and comfort guide every design decision.</div>
+            </div>
+            <div class="philosophy-card">
+                <div class="card-title">IP With Purpose</div>
+                <div class="card-text">IP should represent real clinical value and functional advancement.</div>
+            </div>
+            <div class="philosophy-card">
+                <div class="card-title">Access for All</div>
+                <div class="card-text">Innovation is only meaningful when patients can afford it.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITMENT -->
+    <section>
+        <div class="sec-label">
+            <div class="sec-label-line"></div><span class="sec-label-text">Our Commitment</span>
+        </div>
+        <div class="sec-body">
+            <p>Alera Medtech collaborates with clinicians, researchers, and healthcare systems to solve practical
+                challenges with engineering that is focused, efficient, and human centered. Our success is measured in
+                clinical impact, ease of use, and improved patient experiences.</p>
+            <p>As a growing company with a focused mission, Alera Medtech is working to redefine overlooked areas in
+                medical devices, starting in neurology and vascular access. We aim to deliver safer, more effective, and
+                genuinely accessible solutions for healthcare providers and patients around the world. We welcome
+                collaboration with partners, clinicians, and others who share this vision to shape the future of
+                essential medical devices in these vital fields.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div>
+                <div class="footer-logo"><img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAALWCAYAAAAeWQjDAAAx90lEQVR42u3d3W7jStIs0KDh939lzoW3p7ttS5bEv6rMtW4ODvABs5tiJaMqRDkBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD43eISAABXWNd1dRXYJdAui0wLAAAAAOzizSUAAAAAAAAAAAU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMA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"
+                        alt="Alera Medtech" class="footer-logo-img"></div>
+                <p class="footer-tagline">Medical devices for neurology and vascular access, re-engineered with better
+                    materials, safety features and ergonomic design than what the market currently offers.</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Products</div>
+                <a href="products.html">DPNCheck®</a>
+                <a href="products.html">Neurology</a>
+                <a href="products.html">Vascular Access</a>
+                <a href="resources.html">Resources</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Company</div>
+                <a href="about.html">About Us</a>
+                <a href="about.html">Our Approach</a>
+                <a href="#">News &amp; Events</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Connect</div>
+                <a href="contact.html">Contact Us</a>
+                <a href="contact.html">Distributors</a>
+                <a href="resources.html#samples">Request Samples</a>
+                <a href="https://www.linkedin.com/company/alera-medtech" target="_blank" rel="noopener"
+                    class="li-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                        style="flex-shrink:0">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg> Follow on LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2026 Alera Medtech, Inc. All rights reserved.</div>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Regulatory</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabLinks;
+            tabContent = document.getElementsByClassName("tab-pane");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+            tabLinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+
+</html>
