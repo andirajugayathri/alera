@@ -163,6 +163,65 @@
       opacity: 0.6;
     }
 
+    /* --- DROPDOWN NAV --- */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--ink-2);
+      min-width: 180px;
+      box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      border-radius: 6px;
+      padding: 12px 0;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .dropdown-content a {
+      color: rgba(255, 255, 255, 0.6) !important;
+      padding: 10px 20px !important;
+      text-decoration: none;
+      display: block;
+      font-size: 0.72rem !important;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff !important;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .nav-links .dropdown>a {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links .dropdown>a::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid currentColor;
+      opacity: 0.6;
+    }
+
     .nav-btn {
       background: var(--brand);
       color: #fff !important;
@@ -758,7 +817,14 @@
       </div>
       <a href="products.html">Our Products</a>
       <a href="clinical.html">Clinical</a>
-      <a href="resources.html">Resources</a>
+      <div class="dropdown">
+        <a href="ifu.html">Resources</a>
+        <div class="dropdown-content">
+          <a href="ifu.html">IFU</a>
+          <a href="brochures.html">Brochures</a>
+          <a href="whitepapers.html">Whitepapers</a>
+        </div>
+      </div>
       <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
       <a href="contact.html" class="active nav-btn">Contact Us</a>
     </div>
