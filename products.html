@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/alera_logo.png">
   <title>Our Products | Alera Medtech</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +116,23 @@
 
     .nav-links a.active {
       color: #fff
+    }
+
+    /* Mobile Toggle Button */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      z-index: 210;
+      color: #fff;
+    }
+
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
     }
 
     /* --- DROPDOWN NAV --- */
@@ -887,8 +905,6 @@
       margin-bottom: 32px;
     }
 
-    .footer-brand-col {}
-
     .footer-logo {
       display: flex;
       align-items: center;
@@ -991,6 +1007,101 @@
       border-color: rgba(10, 102, 194, .9) !important;
       color: #fff !important;
     }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 65vh;
+        background: var(--ink-2);
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        transition: right 0.3s ease;
+        padding: 40px;
+        z-index: 205;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 80px 24px;
+      }
+
+      .page-hero {
+        padding: 120px 24px 60px;
+        min-height: auto;
+      }
+
+      .spec-header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .card-featured {
+        grid-template-columns: 1fr;
+      }
+
+      .card-featured-visual {
+        min-height: 240px;
+      }
+
+      .card-featured-body {
+        padding: 40px 24px;
+      }
+
+      .card-name-lg {
+        font-size: 1.75rem;
+      }
+
+      .cta-banner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px;
+        margin: 0 24px 48px;
+        text-align: center;
+      }
+
+      .cta-actions {
+        align-items: center;
+        width: 100%;
+      }
+
+      .btn-white,
+      .btn-outline-white {
+        width: 100%;
+        text-align: center;
+      }
+
+      footer {
+        padding: 48px 24px 36px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
   </style>
 </head>
 
@@ -1015,7 +1126,7 @@
       <a href="products.html" class="active">Our Products</a>
       <a href="clinical.html">Clinical</a>
       <div class="dropdown">
-        <a href="ifu.html">Resources</a>
+        <a href="resources.html">Resources</a>
         <div class="dropdown-content">
           <a href="ifu.html">IFU</a>
           <a href="brochures.html">Brochures</a>
@@ -1025,6 +1136,13 @@
       <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
       <a href="contact.html" class="nav-btn">Contact Us</a>
     </div>
+
+    <!-- Toggle Button -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
   </nav>
 
   <!-- ── PAGE HERO ── -->
@@ -1315,7 +1433,26 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Mobile Navigation Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
 
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+      });
+
+      // Close menu when clicking links
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
 </body>
 
 </html>

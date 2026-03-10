@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/alera_logo.png">
   <title>Clinical Evidence | Alera Medtech</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +116,23 @@
 
     .nav-links a.active {
       color: #fff
+    }
+
+    /* Mobile Toggle Button */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      z-index: 210;
+      color: #fff;
+    }
+
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
     }
 
     /* --- DROPDOWN NAV --- */
@@ -935,6 +953,15 @@
       }
     }
 
+    /* PUBLICATIONS */
+    .pub-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 40px;
+    }
+
     /* FILTER JS */
     .pub-year-group.hidden {
       display: none
@@ -961,6 +988,134 @@
       background: rgba(10, 102, 194, .55) !important;
       border-color: rgba(10, 102, 194, .9) !important;
       color: #fff !important;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 65vh;
+        background: var(--ink-2);
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        transition: right 0.3s ease;
+        padding: 40px;
+        z-index: 205;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 50px 24px;
+      }
+
+      .page-hero {
+        padding: 120px 24px 60px;
+        min-height: auto;
+      }
+
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-block {
+        padding: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+      }
+
+      .stat-block:nth-child(even) {
+        border-right: none;
+      }
+
+      .evidence-intro {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pub-item {
+        grid-template-columns: 1fr;
+        padding: 24px 0;
+      }
+
+      .pub-tag {
+        align-self: flex-start;
+      }
+
+      .cta-banner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px;
+        margin: 0 24px 48px;
+        text-align: left;
+      }
+
+      .cta-actions {
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .btn-white,
+      .btn-outline-white {
+        width: 100%;
+        text-align: center;
+      }
+
+      footer {
+        padding: 48px 24px 36px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: left;
+      }
+
+      .footer-logo {
+        justify-content: flex-start;
+      }
+
+      .footer-tagline {
+        margin: 0;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .footer-legal {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .pub-header-grid {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 16px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -994,6 +1149,13 @@
       <a href="resources.html#samples" class="nav-btn-outline">Order Samples</a>
       <a href="contact.html" class="nav-btn">Contact Us</a>
     </div>
+
+    <!-- Toggle Button -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
   </nav>
 
   <!-- PAGE HERO -->
@@ -1083,7 +1245,7 @@
     <div class="sec-label">
       <div class="sec-label-line"></div><span class="sec-label-text">Publications</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:40px">
+    <div class="pub-header-grid">
       <h2 class="sec-title syne" style="margin-bottom:0">Clinical publications.</h2>
       <p class="sec-body">Independent peer-reviewed research using DPNCheck published across endocrinology, neurology,
         diabetes care, and primary care journals from 2006 to present.</p>
@@ -1442,6 +1604,25 @@
   </footer>
 
   <script>
+    // Mobile Navigation Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+      });
+
+      // Close menu when clicking links
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
     function filterYear(year, btn) {
       document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
