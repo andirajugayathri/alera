@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="images/alera_logo.png">
-  <title>Our Products | Alera Medtech</title>
+  <title>Alera Medtech — Legacy Devices. Reimagined.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -26,8 +26,6 @@
       --white: #FFFFFF;
       --border: #DDE1F0;
       --border-mid: #C0C9E8;
-      --teal: #00B4A0;
-      --teal-lite: #4DD9C8;
     }
 
     *,
@@ -50,18 +48,20 @@
       -webkit-font-smoothing: antialiased;
     }
 
+
     .nav-logo-img {
       height: 28px;
       width: auto;
-      display: block
+      display: block;
     }
 
     .footer-logo-img {
       height: 26px;
       width: auto;
-      display: block
+      display: block;
     }
 
+    /* ─── UTILITY ───────────────────────────────────────────── */
     .mono {
       font-family: 'JetBrains Mono', monospace
     }
@@ -87,6 +87,23 @@
       border-bottom: 1px solid rgba(255, 255, 255, .07);
     }
 
+    /* Mobile Toggle Button */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      z-index: 210;
+      color: #fff;
+    }
+
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+
     .nav-logo {
       display: flex;
       align-items: center;
@@ -105,7 +122,7 @@
       font-weight: 500;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .65);
+      color: rgba(255, 255, 255, .5);
       text-decoration: none;
       transition: color .18s;
     }
@@ -116,23 +133,6 @@
 
     .nav-links a.active {
       color: #fff
-    }
-
-    /* Mobile Toggle Button */
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: none;
-      padding: 8px;
-      cursor: pointer;
-      z-index: 210;
-      color: #fff;
-    }
-
-    .nav-toggle svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
     }
 
     /* --- DROPDOWN NAV --- */
@@ -207,6 +207,22 @@
       background: var(--brand-mid) !important
     }
 
+    .nav-btn-outline {
+      background: #F59E0B;
+      color: #0A0F2E !important;
+      padding: 9px 22px;
+      border-radius: 5px;
+      letter-spacing: .05em !important;
+      border: none;
+      font-weight: 700 !important;
+      transition: background .18s !important;
+    }
+
+    .nav-btn-outline:hover {
+      background: #FCD34D !important;
+      color: #0A0F2E !important;
+    }
+
     .nav-btn-amber {
       background: #F59E0B;
       color: #0A0F2E !important;
@@ -219,18 +235,19 @@
       background: #FCD34D !important
     }
 
-    /* ─── PAGE HERO ─────────────────────────────────────────── */
-    .page-hero {
-      min-height: 420px;
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
       background: var(--ink);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 120px 56px 72px;
+      justify-content: center;
+      padding: 120px 56px 80px;
       position: relative;
       overflow: hidden;
     }
 
+    /* animated grid lines */
     .hero-grid {
       position: absolute;
       inset: 0;
@@ -242,6 +259,7 @@
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
     }
 
+    /* glow orbs */
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -263,6 +281,14 @@
       bottom: -80px;
       left: 10%;
       background: rgba(0, 58, 243, .10)
+    }
+
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+      top: 40%;
+      left: 50%;
+      background: rgba(107, 142, 248, .08)
     }
 
     .hero-kicker {
@@ -304,20 +330,20 @@
       color: var(--brand-lite);
     }
 
-    .page-hero h1 {
+    .hero h1 {
       font-family: 'Manrope', sans-serif;
       font-weight: 800;
-      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
       color: #fff;
       line-height: 1.12;
       letter-spacing: -.02em;
       max-width: 800px;
-      margin-bottom: 22px;
+      margin-bottom: 28px;
       opacity: 0;
       animation: fadeUp .65s .2s ease forwards;
     }
 
-    .page-hero h1 em {
+    .hero h1 em {
       font-style: normal;
       background: linear-gradient(135deg, var(--brand-mid), var(--brand-lite));
       -webkit-background-clip: text;
@@ -325,13 +351,186 @@
       background-clip: text;
     }
 
-    .page-hero-sub {
+    .hero-sub {
       font-size: 1.05rem;
       line-height: 1.75;
-      color: rgba(255, 255, 255, .65);
-      max-width: 540px;
+      color: rgba(255, 255, 255, .52);
+      max-width: 520px;
+      margin-bottom: 48px;
       opacity: 0;
       animation: fadeUp .65s .3s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .65s .4s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 6px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: background .18s, transform .18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-mid);
+      transform: translateY(-1px)
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255, 255, 255, .7);
+      padding: 14px 32px;
+      border-radius: 6px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-size: .9rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: color .18s, border-color .18s;
+      border: 1.5px solid rgba(255, 255, 255, .18);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .45)
+    }
+
+    /* stat ticker */
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      opacity: 0;
+      animation: fadeUp .65s .55s ease forwards;
+    }
+
+    .stat-item {
+      padding: 24px 40px;
+      border-right: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .stat-item:last-child {
+      border-right: none
+    }
+
+    .stat-num {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-num span {
+      color: var(--brand-lite)
+    }
+
+    .stat-label {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.45
+    }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 88px;
+      right: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeUp .6s .7s ease forwards;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(180deg, rgba(0, 58, 243, .8), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: .4
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .scroll-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .25);
+      writing-mode: vertical-rl;
+    }
+
+    /* ─── INTRO STRIP ────────────────────────────────────────── */
+    .intro-strip {
+      background: var(--brand);
+      padding: 28px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .intro-strip p {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    .intro-strip a {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255, 255, 255, .35);
+      padding-bottom: 2px;
+      transition: color .18s, border-color .18s;
+    }
+
+    .intro-strip a:hover {
+      color: #fff;
+      border-color: #fff
     }
 
     /* ─── SECTION COMMONS ────────────────────────────────────── */
@@ -347,7 +546,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 18px
+      margin-bottom: 18px;
     }
 
     .sec-label-line {
@@ -374,224 +573,43 @@
       margin-bottom: 20px;
     }
 
-    /* ─── SPECIALTY HEADER ───────────────────────────────────── */
-    .spec-header {
+    .sec-body {
+      font-size: .96rem;
+      line-height: 1.78;
+      color: var(--slate);
+      max-width: 600px;
+    }
+
+    /* ─── APPROACH ────────────────────────────────────────────── */
+    .approach-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 56px;
-      align-items: end;
-      padding-bottom: 36px;
-      margin-bottom: 52px;
-      border-bottom: 1px solid var(--border);
+      align-items: start;
+      margin-bottom: 48px;
     }
 
-    .spec-header-left .spec-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--brand-lite);
-      margin-bottom: 10px;
-    }
+    .approach-text {}
 
-    .spec-header-left h2 {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      color: var(--ink);
-      letter-spacing: -.02em;
-      line-height: 1.1;
-    }
-
-    .alt .spec-header-left h2 {
-      color: var(--ink)
-    }
-
-    .spec-header-right {
-      font-size: .93rem;
-      line-height: 1.78;
-      color: var(--slate);
-      padding-bottom: 4px;
-    }
-
-    /* ─── PRODUCT GRID ───────────────────────────────────────── */
-    .product-grid {
+    .approach-pillars {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 0;
     }
 
-    /* Featured card: full width row */
-    .card-featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
+    .pillar {
       background: var(--ink-2);
-      border: 1px solid rgba(0, 58, 243, .28);
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      transition: border-color .22s, box-shadow .22s;
-    }
-
-    .card-featured:hover {
-      border-color: rgba(0, 58, 243, .55);
-      box-shadow: 0 20px 60px rgba(0, 58, 243, .18);
-    }
-
-    .card-featured::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-lite));
-      z-index: 3;
-    }
-
-    .card-featured-visual {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(0, 58, 243, .2), rgba(107, 142, 248, .06));
-      min-height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-featured-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0, 58, 243, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 58, 243, .08) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .feat-glyph {
-      position: relative;
-      z-index: 2;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 5rem;
-      line-height: 1;
-      letter-spacing: -.04em;
-      color: rgba(107, 142, 248, .22);
-      text-align: center;
-    }
-
-    .card-featured-body {
-      padding: 48px 44px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center
-    }
-
-    .feat-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--brand-lite);
-      margin-bottom: 16px;
-    }
-
-    .feat-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--brand-lite);
-      animation: pulse 2s ease infinite
-    }
-
-    .card-eyebrow-lg {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .62rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .65);
-      margin-bottom: 10px;
-    }
-
-    .card-name-lg {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 800;
-      font-size: 2rem;
-      color: #fff;
-      letter-spacing: -.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .card-desc-lg {
-      font-size: .88rem;
-      line-height: 1.72;
-      color: rgba(255, 255, 255, .65);
-      margin-bottom: 28px;
-    }
-
-    .card-benefits-lg {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      margin-bottom: 32px
-    }
-
-    .benefit-lg {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: .82rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, .65);
-    }
-
-    .b-dot-lg {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--brand-lite);
-      margin-top: 5px;
-      flex-shrink: 0;
-    }
-
-    .card-link-lg {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Manrope', sans-serif;
-      font-weight: 600;
-      font-size: .82rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--brand-lite);
-      text-decoration: none;
-      transition: gap .18s, color .18s;
-      width: fit-content;
-    }
-
-    .card-link-lg:hover {
-      gap: 12px;
-      color: #fff
-    }
-
-    /* Standard product cards */
-    .product-card {
-      background: var(--white);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0, 58, 243, .2);
       border-radius: 14px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: border-color .22s, box-shadow .22s, transform .22s;
+      padding: 32px 28px 28px;
       position: relative;
+      overflow: hidden;
+      transition: transform .22s ease, border-color .22s, box-shadow .22s;
+      cursor: default;
     }
 
-    .product-card::before {
+    .pillar::before {
       content: '';
       position: absolute;
       top: 0;
@@ -604,175 +622,807 @@
       transition: transform .3s ease;
     }
 
-    .product-card:hover::before {
+    .pillar:hover::before {
       transform: scaleX(1)
     }
 
-    .product-card:hover {
+    .pillar:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 58, 243, .45);
+      box-shadow: 0 16px 48px rgba(0, 58, 243, .18);
+    }
+
+    .pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.5rem;
+      font-weight: 400;
+      line-height: 1;
+      color: rgba(0, 58, 243, .18);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      letter-spacing: -.04em;
+      transition: color .22s;
+    }
+
+    .pillar:hover .pillar-num {
+      color: rgba(0, 58, 243, .35)
+    }
+
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 58, 243, .12);
+      border: 1px solid rgba(0, 58, 243, .28);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: background .22s, border-color .22s;
+      flex-shrink: 0;
+    }
+
+    .pillar-icon svg {
+      transition: stroke .22s;
+    }
+
+    .pillar:hover .pillar-icon {
+      background: rgba(0, 58, 243, .25);
+      border-color: rgba(0, 58, 243, .6);
+    }
+
+    .pillar:hover .pillar-icon svg {
+      stroke: #fff;
+    }
+
+    .pillar-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .pillar-desc {
+      font-size: .83rem;
+      line-height: 1.68;
+      color: rgba(255, 255, 255, .5)
+    }
+
+    /* ── pillar colour variants ── */
+    .pillar-1 {
+      border-color: rgba(0, 58, 243, .25);
+    }
+
+    .pillar-1::before {
+      background: linear-gradient(90deg, #003AF3, #6B8EF8);
+    }
+
+    .pillar-1 .pillar-icon {
+      background: rgba(0, 58, 243, .13);
       border-color: rgba(0, 58, 243, .3);
-      box-shadow: 0 12px 40px rgba(0, 58, 243, .1);
+    }
+
+    .pillar-1 .pillar-num {
+      color: #6B8EF8;
+      text-shadow: 0 0 24px rgba(107, 142, 248, .5);
+    }
+
+    .pillar-1:hover {
+      border-color: rgba(0, 58, 243, .55);
+      box-shadow: 0 16px 48px rgba(0, 58, 243, .18);
+    }
+
+    .pillar-1:hover .pillar-num {
+      color: #a8c0ff;
+      text-shadow: 0 0 32px rgba(107, 142, 248, .8);
+    }
+
+    .pillar-1:hover .pillar-icon {
+      background: rgba(0, 58, 243, .28);
+      border-color: rgba(0, 58, 243, .6);
+    }
+
+    .pillar-2 {
+      border-color: rgba(0, 180, 160, .25);
+    }
+
+    .pillar-2::before {
+      background: linear-gradient(90deg, #00B4A0, #4DD9C8);
+    }
+
+    .pillar-2 .pillar-icon {
+      background: rgba(0, 180, 160, .13);
+      border-color: rgba(0, 180, 160, .3);
+    }
+
+    .pillar-2 .pillar-icon svg {
+      stroke: #4DD9C8;
+    }
+
+    .pillar-2 .pillar-num {
+      color: #4DD9C8;
+      text-shadow: 0 0 24px rgba(77, 217, 200, .5);
+    }
+
+    .pillar-2:hover {
+      border-color: rgba(0, 180, 160, .55);
+      box-shadow: 0 16px 48px rgba(0, 180, 160, .15);
+    }
+
+    .pillar-2:hover .pillar-num {
+      color: #7eeedd;
+      text-shadow: 0 0 32px rgba(77, 217, 200, .8);
+    }
+
+    .pillar-2:hover .pillar-icon {
+      background: rgba(0, 180, 160, .25);
+      border-color: rgba(0, 180, 160, .6);
+    }
+
+    .pillar-2:hover .pillar-icon svg {
+      stroke: #fff;
+    }
+
+    .pillar-3 {
+      border-color: rgba(155, 90, 250, .25);
+    }
+
+    .pillar-3::before {
+      background: linear-gradient(90deg, #9B5AFA, #C49EFF);
+    }
+
+    .pillar-3 .pillar-icon {
+      background: rgba(155, 90, 250, .13);
+      border-color: rgba(155, 90, 250, .3);
+    }
+
+    .pillar-3 .pillar-icon svg {
+      stroke: #C49EFF;
+    }
+
+    .pillar-3 .pillar-num {
+      color: #C49EFF;
+      text-shadow: 0 0 24px rgba(196, 158, 255, .5);
+    }
+
+    .pillar-3:hover {
+      border-color: rgba(155, 90, 250, .55);
+      box-shadow: 0 16px 48px rgba(155, 90, 250, .15);
+    }
+
+    .pillar-3:hover .pillar-num {
+      color: #dbbfff;
+      text-shadow: 0 0 32px rgba(196, 158, 255, .8);
+    }
+
+    .pillar-3:hover .pillar-icon {
+      background: rgba(155, 90, 250, .25);
+      border-color: rgba(155, 90, 250, .6);
+    }
+
+    .pillar-3:hover .pillar-icon svg {
+      stroke: #fff;
+    }
+
+    .pillar-4 {
+      border-color: rgba(245, 158, 11, .22);
+    }
+
+    .pillar-4::before {
+      background: linear-gradient(90deg, #F59E0B, #FCD34D);
+    }
+
+    .pillar-4 .pillar-icon {
+      background: rgba(245, 158, 11, .13);
+      border-color: rgba(245, 158, 11, .28);
+    }
+
+    .pillar-4 .pillar-icon svg {
+      stroke: #FCD34D;
+    }
+
+    .pillar-4 .pillar-num {
+      color: #FCD34D;
+      text-shadow: 0 0 24px rgba(252, 211, 77, .5);
+    }
+
+    .pillar-4:hover {
+      border-color: rgba(245, 158, 11, .5);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, .12);
+    }
+
+    .pillar-4:hover .pillar-num {
+      color: #ffe484;
+      text-shadow: 0 0 32px rgba(252, 211, 77, .8);
+    }
+
+    .pillar-4:hover .pillar-icon {
+      background: rgba(245, 158, 11, .22);
+      border-color: rgba(245, 158, 11, .55);
+    }
+
+    .pillar-4:hover .pillar-icon svg {
+      stroke: #fff;
+    }
+
+    .approach-visual {
+      position: relative;
+      background: var(--ink-2);
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 48px 40px;
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .approach-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(0, 58, 243, .3) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(107, 142, 248, .15) 0%, transparent 55%);
+    }
+
+    .approach-visual-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 58, 243, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 58, 243, .08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .approach-quote {
+      position: relative;
+      z-index: 2;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 20px;
+    }
+
+    .approach-quote em {
+      font-style: normal;
+      color: var(--brand-lite);
+    }
+
+    .approach-outcomes {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .outcome-chip {
+      background: rgba(0, 58, 243, .25);
+      border: 1px solid rgba(0, 58, 243, .4);
+      color: rgba(255, 255, 255, .8);
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    /* ─── WHY IT MATTERS ─────────────────────────────────────── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: var(--ink-2);
+      border: 1px solid rgba(0, 58, 243, .2);
+      border-radius: 14px;
+      padding: 28px 24px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s ease, border-color .22s, box-shadow .22s;
+      cursor: default;
+    }
+
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .why-card:hover::before {
+      transform: scaleX(1)
+    }
+
+    .why-card:hover {
       transform: translateY(-4px);
     }
 
-    .card-body {
-      padding: 32px 28px 24px;
-      display: flex;
-      flex-direction: column;
-      flex: 1
+    .why-num {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 10px;
     }
 
-    .card-eyebrow {
+    .why-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .why-desc {
+      font-size: .78rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .45)
+    }
+
+    /* ── why-card colour variants ── */
+    .why-1 {
+      border-color: rgba(0, 58, 243, .25);
+    }
+
+    .why-1::before {
+      background: linear-gradient(90deg, #003AF3, #6B8EF8);
+    }
+
+    .why-1 .why-num {
+      color: #6B8EF8;
+    }
+
+    .why-1:hover {
+      border-color: rgba(0, 58, 243, .55);
+      box-shadow: 0 16px 40px rgba(0, 58, 243, .18);
+    }
+
+    .why-2 {
+      border-color: rgba(0, 180, 160, .25);
+    }
+
+    .why-2::before {
+      background: linear-gradient(90deg, #00B4A0, #4DD9C8);
+    }
+
+    .why-2 .why-num {
+      color: #4DD9C8;
+    }
+
+    .why-2:hover {
+      border-color: rgba(0, 180, 160, .55);
+      box-shadow: 0 16px 40px rgba(0, 180, 160, .15);
+    }
+
+    .why-3 {
+      border-color: rgba(155, 90, 250, .25);
+    }
+
+    .why-3::before {
+      background: linear-gradient(90deg, #9B5AFA, #C49EFF);
+    }
+
+    .why-3 .why-num {
+      color: #C49EFF;
+    }
+
+    .why-3:hover {
+      border-color: rgba(155, 90, 250, .55);
+      box-shadow: 0 16px 40px rgba(155, 90, 250, .15);
+    }
+
+    .why-4 {
+      border-color: rgba(245, 158, 11, .22);
+    }
+
+    .why-4::before {
+      background: linear-gradient(90deg, #F59E0B, #FCD34D);
+    }
+
+    .why-4 .why-num {
+      color: #FCD34D;
+    }
+
+    .why-4:hover {
+      border-color: rgba(245, 158, 11, .5);
+      box-shadow: 0 16px 40px rgba(245, 158, 11, .12);
+    }
+
+    /* ─── SPECIALTIES ────────────────────────────────────────── */
+    .specialties-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .spec-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px
+    }
+
+    .spec-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      cursor: pointer;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 58, 243, .12);
+      border-color: var(--brand-soft);
+    }
+
+    .spec-card-header {
+      background: var(--ink-2);
+      padding: 40px 32px 32px;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .spec-card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 100% 0%, rgba(0, 58, 243, .35) 0%, transparent 60%);
+    }
+
+    .spec-card-header-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 58, 243, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 58, 243, .06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .spec-num {
+      position: relative;
+      z-index: 2;
       font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .18em;
+      font-size: .65rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--brand-lite);
       margin-bottom: 10px;
     }
 
-    .card-name {
+    .spec-title {
+      position: relative;
+      z-index: 2;
       font-family: 'Manrope', sans-serif;
-      font-weight: 700;
-      font-size: 1.12rem;
-      color: var(--ink);
-      letter-spacing: -.01em;
-      margin-bottom: 12px;
-      line-height: 1.25;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff;
     }
 
-    .card-desc {
-      font-size: .84rem;
+    .spec-card-body {
+      background: var(--white);
+      padding: 28px 32px
+    }
+
+    .spec-desc {
+      font-size: .87rem;
       line-height: 1.7;
       color: var(--slate);
-      margin-bottom: 18px;
-      flex: 1;
+      margin-bottom: 20px
     }
 
-    .card-benefits {
+    .spec-tags {
       display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 0
-    }
-
-    .benefit {
-      display: flex;
-      align-items: flex-start;
+      flex-wrap: wrap;
       gap: 8px;
-      font-size: .78rem;
-      line-height: 1.45;
-      color: var(--slate);
+      margin-bottom: 24px
     }
 
-    .b-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--brand);
-      margin-top: 5px;
-      flex-shrink: 0;
+    .spec-tag {
+      font-size: .74rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: var(--brand-tint);
+      color: var(--brand);
+      border: 1px solid var(--brand-soft);
     }
 
-    .card-foot {
-      border-top: 1px solid var(--border);
-      padding: 18px 28px;
-      margin-top: auto;
-    }
-
-    .card-link {
+    .spec-link {
       font-family: 'Manrope', sans-serif;
       font-weight: 600;
-      font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
+      font-size: .82rem;
       color: var(--brand);
       text-decoration: none;
+      letter-spacing: .04em;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: gap .18s, color .18s;
     }
 
-    .card-link:hover {
+    .spec-link:hover {
       gap: 10px;
       color: var(--ink)
     }
 
-    /* ─── VASCULAR TEAL OVERRIDES ──────────────────────────── */
-    .vascular .card-featured {
-      border-color: rgba(0, 180, 160, .28)
+    /* featured product callout */
+    .dpn-callout {
+      margin-top: 24px;
+      background: var(--ink-2);
+      border-radius: 14px;
+      padding: 36px 36px 32px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 58, 243, .3);
     }
 
-    .vascular .card-featured:hover {
-      border-color: rgba(0, 180, 160, .6);
-      box-shadow: 0 20px 60px rgba(0, 180, 160, .15)
+    .dpn-callout::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-lite));
     }
 
-    .vascular .card-featured::before {
-      background: linear-gradient(90deg, var(--teal), var(--teal-lite))
+    .dpn-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--brand-lite);
+      margin-bottom: 10px;
     }
 
-    .vascular .card-featured-visual {
-      background: linear-gradient(135deg, rgba(0, 180, 160, .18), rgba(77, 217, 200, .05))
+    .dpn-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 14px;
     }
 
-    .vascular .card-featured-visual::before {
-      background-image:
-        linear-gradient(rgba(0, 180, 160, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 180, 160, .08) 1px, transparent 1px);
+    .dpn-desc {
+      font-size: .87rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .55);
+      margin-bottom: 24px
     }
 
-    .vascular .feat-glyph {
-      color: rgba(77, 217, 200, .2)
+    .dpn-facts {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap
     }
 
-    .vascular .feat-dot {
-      background: var(--teal-lite)
+    .dpn-fact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .6);
     }
 
-    .vascular .feat-badge {
-      color: var(--teal-lite)
+    .dpn-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-lite);
+      flex-shrink: 0
     }
 
-    .vascular .b-dot-lg {
-      background: var(--teal-lite)
+    /* ─── AUDIENCES ──────────────────────────────────────────── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 56px;
     }
 
-    .vascular .card-name-lg {
+    .audience-card {
+      background: var(--ink-2);
+      border: 1px solid rgba(0, 58, 243, .2);
+      border-radius: 14px;
+      padding: 32px 28px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s ease, border-color .22s, box-shadow .22s;
+      cursor: default;
+    }
+
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-lite));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .audience-card:hover::before {
+      transform: scaleX(1)
+    }
+
+    .audience-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 58, 243, .45);
+      box-shadow: 0 16px 48px rgba(0, 58, 243, .18);
+    }
+
+    .audience-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 58, 243, .12);
+      border: 1px solid rgba(0, 58, 243, .28);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      transition: background .22s, border-color .22s;
+      flex-shrink: 0;
+    }
+
+    .audience-card:hover .audience-icon {
+      background: rgba(0, 58, 243, .25);
+      border-color: rgba(0, 58, 243, .6);
+    }
+
+    .audience-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .audience-desc {
+      font-size: .83rem;
+      line-height: 1.68;
+      color: rgba(255, 255, 255, .5);
+      margin-bottom: 18px
+    }
+
+    .audience-link {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: .78rem;
+      color: var(--brand-lite);
+      text-decoration: none;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .18s, color .18s;
+    }
+
+    .audience-link:hover {
+      gap: 9px;
       color: #fff
     }
 
-    .vascular .card-link-lg {
-      color: var(--teal-lite)
+    /* ── audience colour variants ── */
+    .aud-1 {
+      border-color: rgba(0, 58, 243, .25);
     }
 
-    .vascular .card-link-lg:hover {
-      color: #fff
+    .aud-1::before {
+      background: linear-gradient(90deg, #003AF3, #6B8EF8);
     }
 
-    .vascular .product-card::before {
-      background: linear-gradient(90deg, var(--teal), var(--teal-lite))
+    .aud-1 .audience-icon {
+      background: rgba(0, 58, 243, .13);
+      border-color: rgba(0, 58, 243, .3);
     }
 
-    .vascular .product-card:hover {
+    .aud-1:hover {
+      border-color: rgba(0, 58, 243, .55);
+      box-shadow: 0 16px 48px rgba(0, 58, 243, .18);
+    }
+
+    .aud-1:hover .audience-icon {
+      background: rgba(0, 58, 243, .28);
+      border-color: rgba(0, 58, 243, .6);
+    }
+
+    .aud-2 {
+      border-color: rgba(0, 180, 160, .25);
+    }
+
+    .aud-2::before {
+      background: linear-gradient(90deg, #00B4A0, #4DD9C8);
+    }
+
+    .aud-2 .audience-icon {
+      background: rgba(0, 180, 160, .13);
       border-color: rgba(0, 180, 160, .3);
-      box-shadow: 0 12px 40px rgba(0, 180, 160, .1)
     }
 
-    .vascular .card-eyebrow {
-      color: var(--teal-lite)
+    .aud-2:hover {
+      border-color: rgba(0, 180, 160, .55);
+      box-shadow: 0 16px 48px rgba(0, 180, 160, .15);
     }
 
-    .vascular .b-dot {
-      background: var(--teal)
+    .aud-2:hover .audience-icon {
+      background: rgba(0, 180, 160, .25);
+      border-color: rgba(0, 180, 160, .6);
     }
 
-    .vascular .card-link {
-      color: var(--teal)
+    .aud-3 {
+      border-color: rgba(155, 90, 250, .25);
     }
 
-    .vascular .card-link:hover {
-      color: var(--ink)
+    .aud-3::before {
+      background: linear-gradient(90deg, #9B5AFA, #C49EFF);
+    }
+
+    .aud-3 .audience-icon {
+      background: rgba(155, 90, 250, .13);
+      border-color: rgba(155, 90, 250, .3);
+    }
+
+    .aud-3:hover {
+      border-color: rgba(155, 90, 250, .55);
+      box-shadow: 0 16px 48px rgba(155, 90, 250, .15);
+    }
+
+    .aud-3:hover .audience-icon {
+      background: rgba(155, 90, 250, .25);
+      border-color: rgba(155, 90, 250, .6);
+    }
+
+    .aud-4 {
+      border-color: rgba(245, 158, 11, .22);
+    }
+
+    .aud-4::before {
+      background: linear-gradient(90deg, #F59E0B, #FCD34D);
+    }
+
+    .aud-4 .audience-icon {
+      background: rgba(245, 158, 11, .13);
+      border-color: rgba(245, 158, 11, .28);
+    }
+
+    .aud-4:hover {
+      border-color: rgba(245, 158, 11, .5);
+      box-shadow: 0 16px 48px rgba(245, 158, 11, .12);
+    }
+
+    .aud-4:hover .audience-icon {
+      background: rgba(245, 158, 11, .22);
+      border-color: rgba(245, 158, 11, .55);
     }
 
     /* ─── CTA BANNER ─────────────────────────────────────────── */
@@ -838,7 +1488,7 @@
       z-index: 2;
       font-size: .95rem;
       line-height: 1.7;
-      color: rgba(255, 255, 255, .65);
+      color: rgba(255, 255, 255, .5);
       max-width: 500px;
     }
 
@@ -905,6 +1555,8 @@
       margin-bottom: 32px;
     }
 
+    .footer-brand-col {}
+
     .footer-logo {
       display: flex;
       align-items: center;
@@ -915,7 +1567,7 @@
     .footer-tagline {
       font-size: .85rem;
       line-height: 1.7;
-      color: rgba(255, 255, 255, .65);
+      color: rgba(255, 255, 255, .38);
       max-width: 260px
     }
 
@@ -925,14 +1577,14 @@
       font-size: .78rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .50);
+      color: rgba(255, 255, 255, .3);
       margin-bottom: 16px;
     }
 
     .footer-col a {
       display: block;
       font-size: .83rem;
-      color: rgba(255, 255, 255, .65);
+      color: rgba(255, 255, 255, .45);
       text-decoration: none;
       margin-bottom: 10px;
       transition: color .16s;
@@ -952,7 +1604,7 @@
 
     .footer-copy {
       font-size: .76rem;
-      color: rgba(255, 255, 255, .65)
+      color: rgba(255, 255, 255, .25)
     }
 
     .footer-legal {
@@ -962,7 +1614,7 @@
 
     .footer-legal a {
       font-size: .76rem;
-      color: rgba(255, 255, 255, .65);
+      color: rgba(255, 255, 255, .25);
       text-decoration: none;
       transition: color .16s
     }
@@ -971,7 +1623,6 @@
       color: rgba(255, 255, 255, .6)
     }
 
-    /* ─── ANIMATIONS ─────────────────────────────────────────── */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -984,6 +1635,161 @@
       }
     }
 
+    .why-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat-item:nth-child(n+3) {
+        border-top: 1px solid rgba(255, 255, 255, .07);
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .specialties-intro {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .cta-banner {
+        grid-template-columns: 1fr;
+        padding: 48px 40px;
+        text-align: center;
+      }
+
+      .cta-actions {
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 65vh;
+        background: var(--ink-2);
+        flex-direction: column;
+        justify-content: center;
+        gap: 32px;
+        transition: right 0.3s ease;
+        padding: 40px;
+        z-index: 205;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 80px 24px;
+      }
+
+      .hero {
+        padding: 120px 24px 60px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        margin: 0 auto 24px;
+      }
+
+      .hero-sub {
+        margin: 0 auto 40px;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        position: static;
+        margin-top: 60px;
+        border-right: 1px solid rgba(255, 255, 255, .07);
+      }
+
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .07);
+      }
+
+      .scroll-cue {
+        display: none;
+      }
+
+      .approach-pillars,
+      .why-grid,
+      .spec-cards,
+      .audience-grid,
+      .why-header-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-banner {
+        margin: 0 24px 56px;
+      }
+
+      /* Reorder Why It Matters section for mobile */
+      #why {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .why-header {
+        order: 1;
+      }
+
+      .why-grid {
+        order: 1;
+        margin-top: 0 !important;
+      }
+
+      footer {
+        padding: 48px 24px 36px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .why-header-grid {
+        gap: 0;
+      }
+      .footer-bottom {
+        align-items: center;
+        justify-content: center;
+      }
+    }
 
     .li-btn {
       display: inline-flex;
@@ -1007,105 +1813,6 @@
       border-color: rgba(10, 102, 194, .9) !important;
       color: #fff !important;
     }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 0 24px;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 65vh;
-        background: var(--ink-2);
-        flex-direction: column;
-        justify-content: center;
-        gap: 28px;
-        transition: right 0.3s ease;
-        padding: 40px;
-        z-index: 205;
-      }
-
-      .nav-links.active {
-        right: 0;
-      }
-
-      .nav-links a {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 80px 24px;
-      }
-
-      .page-hero {
-        padding: 120px 24px 60px;
-        min-height: auto;
-      }
-
-      .spec-header {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .card-featured {
-        grid-template-columns: 1fr;
-      }
-
-      .card-featured-visual {
-        min-height: 240px;
-      }
-
-      .card-featured-body {
-        padding: 40px 24px;
-      }
-
-      .card-name-lg {
-        font-size: 1.75rem;
-      }
-
-      .cta-banner {
-        grid-template-columns: 1fr;
-        padding: 48px 24px;
-        margin: 0 24px 48px;
-        text-align: center;
-      }
-
-      .cta-actions {
-        align-items: center;
-        width: 100%;
-      }
-
-      .btn-white,
-      .btn-outline-white {
-        width: 100%;
-        text-align: center;
-      }
-
-      footer {
-        padding: 48px 24px 36px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .footer-bottom {
-        align-items: center;
-        justify-content: center;
-      }
-    }
   </style>
 </head>
 
@@ -1119,7 +1826,7 @@
         alt="Alera Medtech" class="nav-logo-img">
     </a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <div class="dropdown">
         <a href="about.html">About Us</a>
         <div class="dropdown-content">
@@ -1127,17 +1834,17 @@
           <a href="our-team.html">Our Team</a>
         </div>
       </div>
-      <a href="products.html" class="active">Our Products</a>
+      <a href="products.html">Our Products</a>
       <a href="clinical.html">Clinical</a>
-      <!--<div class="dropdown">-->
-      <!--  <a href="resources.html">Resources</a>-->
-      <!--  <div class="dropdown-content">-->
-      <!--    <a href="ifu.html">IFU</a>-->
-      <!--    <a href="brochures.html">Brochures</a>-->
-      <!--    <a href="whitepapers.html">Whitepapers</a>-->
-      <!--  </div>-->
-      <!--</div>-->
-      <!--<a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>-->
+      <div class="dropdown">
+        <a href="resources.html">Resources</a>
+        <div class="dropdown-content">
+          <a href="ifu.html">IFU</a>
+          <a href="brochures.html">Brochures</a>
+          <a href="whitepapers.html">Whitepapers</a>
+        </div>
+      </div>
+      <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
       <a href="contact.html" class="nav-btn">Contact Us</a>
     </div>
 
@@ -1149,257 +1856,292 @@
     </button>
   </nav>
 
-  <!-- ── PAGE HERO ── -->
-  <div class="page-hero">
+  <!-- ── HERO ── -->
+  <div class="hero">
     <div class="hero-grid"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
     <div class="hero-kicker">
       <div class="kicker-dot"></div>
-      <span class="kicker-text">Our Product Portfolio</span>
+      <span class="kicker-text">Neurology &amp; Vascular Access</span>
     </div>
+
     <h1 class="syne">Legacy Devices.<br><em>Reimagined.</em></h1>
-    <p class="page-hero-sub">Neurology and Vascular Access Devices. Each one built to fix a specific problem that the
-      existing device didn't solve.</p>
+
+    <p class="hero-sub">
+      Alera Medtech brings real engineering innovation to the medical devices clinicians
+      depend on every day — categories where progress has stalled for decades.
+      We're changing that.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Explore Our Products <span>→</span></a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">30<span>+</span></div>
+        <div class="stat-label">Years of stagnation in routine neurology &amp; vascular access devices</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Core specialties where under-innovation persists at scale</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30<span>M</span></div>
+        <div class="stat-label">Americans affected by peripheral neuropathy — often undetected</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span style="font-size:1.4rem">Boston</span></div>
+        <div class="stat-label">Headquartered in Boston, MA — with an expanding global presence</div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- SPECIALTY 01: NEUROLOGY                                  -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section id="neurology">
-    <div class="spec-header">
-      <div class="spec-header-left">
-        <div class="spec-num">Specialty 01</div>
-        <h2 class="syne">Neurology</h2>
+  <!-- ── INTRO STRIP ── -->
+  <div class="intro-strip">
+    <p>Where other areas of medicine have made tremendous strides, the devices neurologists and vascular teams use daily
+      have barely changed. Alera is here to fix that.</p>
+    <a href="#">Learn Our Goal →</a>
+  </div>
+
+  <!-- ── APPROACH ── -->
+  <section id="approach">
+    <div class="approach-grid">
+      <div class="approach-text">
+        <div class="sec-label">
+          <div class="sec-label-line"></div>
+          <span class="sec-label-text">Our GOAL</span>
+        </div>
+        <h2 class="sec-title syne">Better devices.<br>Better outcomes.<br>Delivered faster.</h2>
+        <p class="sec-body">
+          We apply modern engineering, advanced materials, and clinician-centered design to
+          reimagine essential devices entirely — bypassing the delays of traditional development
+          to bring meaningful advancements to market quickly and cost-effectively.
+        </p>
       </div>
-      <p class="spec-header-right">Electrodes, monitoring devices, and diagnostic tools used by neurologists and
-        neurodiagnostic teams every day. We focused on signal quality, ease of use, and how these things actually get
-        used in the room.</p>
+
+      <div class="approach-visual">
+        <div class="approach-visual-grid"></div>
+        <div class="approach-quote">
+          Innovation that reaches the<br><em>patients who need it most</em> —<br>not just the systems that can afford
+          it.
+        </div>
+        <div class="approach-outcomes">
+          <span class="outcome-chip">Fewer Complications</span>
+          <span class="outcome-chip">Stronger Outcomes</span>
+          <span class="outcome-chip">Reduced System Costs</span>
+          <span class="outcome-chip">Greater Workflow Efficiency</span>
+        </div>
+      </div>
     </div>
 
-    <div class="product-grid">
-
-      <!-- FEATURED: DPNCheck -->
-      <div class="card-featured">
-        <div class="card-featured-visual">
-          <div class="feat-glyph">DPN</div>
-        </div>
-        <div class="card-featured-body">
-          <div class="feat-badge">
-            <div class="feat-dot"></div>Flagship Product · FDA Cleared
-          </div>
-          <div class="card-eyebrow-lg">Point-of-Care Nerve Conduction</div>
-          <div class="card-name-lg syne">DPNCheck®</div>
-          <p class="card-desc-lg">FDA-cleared point-of-care device for nerve conduction testing. Gives clinicians
-            objective, quantitative NCS results in primary care settings in under five minutes, with no specialist
-            referral needed. Most patients with diabetic peripheral neuropathy go undetected until nerve damage is
-            already advanced. DPNCheck addresses that gap directly.</p>
-          <div class="card-benefits-lg">
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Objective NCS results in under 5 minutes
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>No specialist referral needed, works in primary care
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Reduces backlog burden on neurology departments
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Detects neuropathy before nerves are damaged or dead
-            </div>
-          </div>
-          <a href="products.html" class="card-link-lg">Full Overview →</a>
-        </div>
+    <div class="approach-pillars">
+      <div class="pillar pillar-1">
+        <div class="pillar-num">01</div>
+        <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B8EF8"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="6" />
+            <circle cx="12" cy="12" r="2" />
+            <line x1="12" y1="2" x2="12" y2="4" />
+            <line x1="12" y1="20" x2="12" y2="22" />
+            <line x1="2" y1="12" x2="4" y2="12" />
+            <line x1="20" y1="12" x2="22" y2="12" />
+          </svg></div>
+        <div class="pillar-title">Target Under-Innovated Categories</div>
+        <p class="pillar-desc">High-impact device segments that form the daily foundation of care but have seen little
+          meaningful progress.</p>
       </div>
-
-      <!-- Precision Needle Electrodes -->
-      <div class="product-card">
-        <div class="card-body">
-          <div class="card-eyebrow">EMG / Neurodiagnostics</div>
-          <div class="card-name syne">Precision Needle Electrodes</div>
-          <p class="card-desc">Hypodermic needle electrodes rebuilt with better tip geometry and higher-grade materials.
-            Cleaner signal, less patient discomfort during EMG, and an improved grip that reduces hand fatigue during
-            longer procedures.</p>
-          <div class="card-benefits">
-            <div class="benefit">
-              <div class="b-dot"></div>Improved signal-to-noise ratio
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Ergonomic grip reduces physician fatigue
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Compatible with major EMG platforms
-            </div>
-          </div>
-        </div>
-        <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
+      <div class="pillar pillar-2">
+        <div class="pillar-num">02</div>
+        <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B8EF8"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg></div>
+        <div class="pillar-title">Redesign with Purpose</div>
+        <p class="pillar-desc">Achieve meaningful improvements in usability, signal accuracy, and seamless integration into
+          fast-paced clinical workflows.</p>
       </div>
-
-      <!-- IONM Electrodes -->
-      <div class="product-card">
-        <div class="card-body">
-          <div class="card-eyebrow">Intraoperative Monitoring</div>
-          <div class="card-name syne">IONM Electrode System</div>
-          <p class="card-desc">Intraoperative neurophysiological monitoring electrodes built for OR conditions.
-            Maintains reliable signal through the full case, with secure adhesion and low artifact even in electrically
-            noisy environments.</p>
-          <div class="card-benefits">
-            <div class="benefit">
-              <div class="b-dot"></div>Low-impedance, high-fidelity signal
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Simplified application for fast OR prep
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Extended wear time, no signal drift
-            </div>
-          </div>
-        </div>
-        <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
+      <div class="pillar pillar-3">
+        <div class="pillar-num">03</div>
+        <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B8EF8"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 17 18 12 13 7" />
+            <polyline points="6 17 11 12 6 7" />
+          </svg></div>
+        <div class="pillar-title">Scale Efficiently</div>
+        <p class="pillar-desc">Streamlined manufacturing that drives cost efficiencies without compromising quality or
+          performance.</p>
       </div>
-
-      <!-- Surface Electrode Suite -->
-      <div class="product-card">
-        <div class="card-body">
-          <div class="card-eyebrow">EEG &amp; Surface EMG</div>
-          <div class="card-name syne">Surface Electrode Suite</div>
-          <p class="card-desc">Surface electrodes for EEG and EMG. Adhesive chemistry optimized for consistent
-            conductivity over longer recording sessions, available in adult and pediatric sizes.</p>
-          <div class="card-benefits">
-            <div class="benefit">
-              <div class="b-dot"></div>Hypoallergenic, latex-free materials
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Consistent gel conductivity across lot sizes
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Adult and pediatric sizes available
-            </div>
-          </div>
-        </div>
-        <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
+      <div class="pillar pillar-4">
+        <div class="pillar-num">04</div>
+        <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B8EF8"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+          </svg></div>
+        <div class="pillar-title">Accessible Pricing</div>
+        <p class="pillar-desc">Innovative devices at accessible prices — making quality available to health systems
+          everywhere.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <!-- SPECIALTY 02: VASCULAR ACCESS                            -->
-  <!-- ══════════════════════════════════════════════════════════ -->
-  <section class="alt vascular" id="vascular">
-    <div class="spec-header">
-      <div class="spec-header-left">
-        <div class="spec-num">Specialty 02</div>
-        <h2 class="syne">Vascular Access</h2>
+  <!-- ── WHY IT MATTERS ── -->
+  <section class="alt" id="why">
+    <div class="why-header">
+      <div class="sec-label">
+        <div class="sec-label-line"></div>
+        <span class="sec-label-text">Why It Matters</span>
       </div>
-      <p class="spec-header-right">Core vascular access devices used across hospitals every day. We looked at where
-        failure actually happens and rebuilt these products to address it.</p>
+      <div class="why-header-grid">
+        <h2 class="sec-title syne">The case for reimagining essential medical devices.</h2>
+        <p class="sec-body">The devices neurologists, vascular specialists, and nursing teams rely on most have seen
+          minimal innovation in decades. This creates real consequences — for patients, providers, and health systems
+          alike.</p>
+      </div>
     </div>
 
-    <div class="product-grid">
-
-      <!-- FEATURED: SureSet -->
-      <div class="card-featured">
-        <div class="card-featured-visual">
-          <div class="feat-glyph">IV</div>
-        </div>
-        <div class="card-featured-body">
-          <div class="feat-badge">
-            <div class="feat-dot"></div>Lead Product
-          </div>
-          <div class="card-eyebrow-lg">Catheter Management</div>
-          <div class="card-name-lg syne">SureSet™ Catheter Securement</div>
-          <p class="card-desc-lg">Catheter securement device built to reduce infections. The current standard relies on
-            tape and suture, which varies widely by user and fails under real ward conditions. SureSet uses integrated
-            antimicrobial design and one-handed application to take that variability out of the equation.</p>
-          <div class="card-benefits-lg">
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Integrated antimicrobial barrier at insertion site
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>One-handed application reduces nursing time
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Standardized hold force across all users
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Transparent window enables site assessment without removal
-            </div>
-          </div>
-          <a href="products.html" class="card-link-lg">Full Overview →</a>
-        </div>
+    <div class="why-grid">
+      <div class="why-card why-1">
+        <div class="why-num">330<span style="font-size:1.1rem">M</span></div>
+        <div class="why-title">Catheters Used Annually</div>
+        <p class="why-desc">330 million peripheral IV catheters are used in the US each year — yet 1 in 3 fails before
+          treatment is complete.</p>
       </div>
-
-      <!-- Dermaflush -->
-      <div class="product-card">
-        <div class="card-body">
-          <div class="card-eyebrow">Prefilled Flush Syringes</div>
-          <div class="card-name syne">Dermaflush™ Prefilled Syringes</div>
-          <p class="card-desc">Prefilled flush syringes with tamper-evident closure and ergonomic plunger. Cuts prep
-            time at the bedside and lowers the risk of medication errors associated with manually drawn flushes.</p>
-          <div class="card-benefits">
-            <div class="benefit">
-              <div class="b-dot"></div>24-month shelf life with stable pH
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Color-coded by flush type for safety
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Unit-dose format reduces waste
-            </div>
-          </div>
-        </div>
-        <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
+      <div class="why-card why-2">
+        <div class="why-num">40<span style="font-size:1.1rem">%</span></div>
+        <div class="why-title">Catheter Failure Rate</div>
+        <p class="why-desc">Current peripheral catheter failure rates remain at 40–50% — unchanged despite decades of
+          clinical use.</p>
       </div>
-
-      <!-- ClynCap -->
-      <div class="product-card">
-        <div class="card-body">
-          <div class="card-eyebrow">Infection Prevention</div>
-          <div class="card-name syne">ClynCap™ IV Caps</div>
-          <p class="card-desc">Disinfecting caps for needleless connectors. Passive disinfection at every access point,
-            with consistent dwell time built into the design. No scrub protocol changes needed for adoption.</p>
-          <div class="card-benefits">
-            <div class="benefit">
-              <div class="b-dot"></div>Passive disinfection, no scrub time needed
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>IPA + chlorhexidine formulation
-            </div>
-            <div class="benefit">
-              <div class="b-dot"></div>Designed for rapid protocol adoption
-            </div>
-          </div>
-        </div>
-        <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
+      <div class="why-card why-3">
+        <div class="why-num">30<span style="font-size:1.1rem">+</span></div>
+        <div class="why-title">Years of Stagnation</div>
+        <p class="why-desc">Core neurology and vascular devices have barely changed in three decades. We're here to fix
+          that.</p>
       </div>
-
+      <div class="why-card why-4">
+        <div class="why-num">↓</div>
+        <div class="why-title">Lower Costs. Better Care.</div>
+        <p class="why-desc">Better devices mean fewer complications, fewer hospitalizations, and lower total cost of
+          care.</p>
+      </div>
     </div>
   </section>
 
+  <!-- ── SPECIALTIES ── -->
+  <section id="specialties">
+    <div class="specialties-intro">
+      <div>
+        <div class="sec-label">
+          <div class="sec-label-line"></div>
+          <span class="sec-label-text">Core Specialties</span>
+        </div>
+        <h2 class="sec-title syne">Where our innovation is focused.</h2>
+      </div>
+      <p class="sec-body">Two under-innovated specialties. Dozens of device categories. One shared goal: raise the
+        standard of care for the clinicians and patients who depend on these devices every day.</p>
+    </div>
+
+    <div class="spec-cards">
+      <!-- Neurology -->
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-card-header-grid"></div>
+          <div class="spec-num">Specialty 01</div>
+          <div class="spec-title syne">Neurology</div>
+        </div>
+        <div class="spec-card-body">
+          <p class="spec-desc">Reimagining the electrodes, monitoring devices, and point-of-care diagnostic tools that
+            neurologists and neurodiagnostic teams depend on daily. Design goals include better signal accuracey and better usability for
+            real clinical workflows.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">DPNCheck®</span>
+            <span class="spec-tag">Cernode™ Medical Electrodes</span>
+            <span class="spec-tag">Hypodermic Needle Electrodes</span>
+            <span class="spec-tag">IONM Electrodes</span>
+            <span class="spec-tag">EEG &amp; EMG Electrodes</span>
+          </div>
+          <a href="#" class="spec-link">Explore Neurology Products <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Vascular Access -->
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-card-header-grid"></div>
+          <div class="spec-num">Specialty 02</div>
+          <div class="spec-title syne">Vascular Access</div>
+        </div>
+        <div class="spec-card-body">
+          <p class="spec-desc">Transforming the foundational devices used in vascular access procedures every day — from
+            catheter securement to infection control — with modern materials that reduce risk and improve patient
+            outcomes.</p>
+          <div class="spec-tags">
+            <span class="spec-tag">SureSet™ Catheter Securement</span>
+            <span class="spec-tag">ClynCap™ Devices for Infection Control</span>
+            <span class="spec-tag">Dermaflush™ Prefilled Flush Syringes</span>
+          </div>
+          <a href="#" class="spec-link">Explore Vascular Products <span>→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DPNCheck callout -->
+    <div class="dpn-callout">
+      <div class="dpn-label">⭐ &nbsp;Featured Product — FDA Cleared</div>
+      <div class="dpn-title syne">DPNCheck®</div>
+      <p class="dpn-desc">A fast, accurate, and quantitative point-of-care nerve conduction test for evaluating diabetic
+        peripheral neuropathy and systemic neuropathies. DPNCheck delivers objective, clinician-ready results in minutes
+        — no specialist referral required, no backlog, no delay.</p>
+      <div class="dpn-facts">
+        <div class="dpn-fact">
+          <div class="dpn-dot"></div>Measures sural nerve conduction velocity &amp; amplitude
+        </div>
+        <div class="dpn-fact">
+          <div class="dpn-dot"></div>Objective detection before irreversible nerve damage occurs
+        </div>
+        <div class="dpn-fact">
+          <div class="dpn-dot"></div>Deployable in primary care, endocrinology &amp; neurology settings
+        </div>
+        <div class="dpn-fact">
+          <div class="dpn-dot"></div>Reduces referral backlog and total cost of diagnosis
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO WE SERVE ── -->
   <!-- ── CTA BANNER ── -->
   <div class="cta-banner">
     <div>
-      <div class="cta-label">Get in Touch</div>
-      <div class="cta-title syne">Talk to our team.</div>
-      <p class="cta-sub">Clinicians, health systems, distributors, and purchasing teams are all welcome. We're easy to
-        reach.</p>
+      <div class="cta-label">Get Started</div>
+      <div class="cta-title syne">Ready to bring better devices<br>to your patients?</div>
+      <p class="cta-sub">Whether you're a clinician, a health system, or a distributor — we'd like to hear from you.</p>
     </div>
     <div class="cta-actions">
-      <a href="contact.html" class="btn-white">Contact Our Team</a>
-      <!--<a href="resources.html#samples" class="btn-outline-white">Request Samples</a>-->
+      <a href="#" class="btn-white">Contact Our Team</a>
+      <a href="#" class="btn-outline-white">Request Product Info</a>
     </div>
   </div>
 
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-top">
-      <div class="footer-brand-col">
-        <div class="footer-logo">
-          <img
+      <div>
+        <div class="footer-logo"><img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAALWCAYAAAAeWQjDAAAx90lEQVR42u3d3W7jStIs0KDh939lzoW3p7ttS5bEv6rMtW4ODvABs5tiJaMqRDkBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD43eISAABXWNd1dRXYJdAui0wLAAAAAOzizSUAAAAAAAAAAAU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMAAAAAAABAEgU6AAAAAAAAACRRoAMA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"
-            alt="Alera Medtech" class="footer-logo-img">
-        </div>
+            alt="Alera Medtech" class="footer-logo-img"></div>
         <p class="footer-tagline">Medical devices for neurology and vascular access, re-engineered with better
           materials, safety features and ergonomic design than what the market currently offers.</p>
       </div>
@@ -1408,23 +2150,24 @@
         <a href="products.html">DPNCheck®</a>
         <a href="products.html">Neurology</a>
         <a href="products.html">Vascular Access</a>
-        <!--<a href="resources.html">Resources</a>-->
+        <a href="resources.html">Resources</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
         <a href="about.html">About Us</a>
         <a href="about.html">Our Approach</a>
-        <!--<a href="#">News &amp; Events</a>-->
+        <a href="#">News &amp; Events</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Connect</div>
         <a href="contact.html">Contact Us</a>
         <a href="contact.html">Distributors</a>
-        <!--<a href="resources.html#samples">Request Samples</a>-->
+        <a href="resources.html#samples">Request Samples</a>
         <a href="https://www.linkedin.com/company/alera-medtech" target="_blank" rel="noopener" class="li-btn"><svg
             width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
             <path
-              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z">
+            </path>
           </svg> Follow on LinkedIn</a>
       </div>
     </div>
@@ -1437,6 +2180,7 @@
       </div>
     </div>
   </footer>
+
   <script>
     // Mobile Navigation Toggle
     const navToggle = document.getElementById('navToggle');

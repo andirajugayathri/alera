@@ -246,6 +246,23 @@
       background: #FCD34D !important
     }
 
+     /* Mobile Toggle Button */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      z-index: 210;
+      color: #fff;
+    }
+
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+
     .hero {
       min-height: 360px;
       background: var(--ink);
@@ -338,7 +355,7 @@
     .hero-sub {
       font-size: 1rem;
       line-height: 1.75;
-      color: rgba(255, 255, 255, .5);
+      color: rgba(255, 255, 255, .65);
       max-width: 520px;
       opacity: 0;
       animation: up .65s .3s forwards
@@ -453,7 +470,7 @@
     .office-addr {
       font-size: .8rem;
       line-height: 1.6;
-      color: rgba(255, 255, 255, .38)
+      color: rgba(255, 255, 255, .65)
     }
 
     .office-links {
@@ -694,7 +711,7 @@
     .footer-tagline {
       font-size: .85rem;
       line-height: 1.7;
-      color: rgba(255, 255, 255, .38);
+      color: rgba(255, 255, 255, .65);
       max-width: 260px
     }
 
@@ -704,14 +721,14 @@
       font-size: .78rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .3);
+      color: rgba(255, 255, 255, .50);
       margin-bottom: 16px
     }
 
     .footer-col a {
       display: block;
       font-size: .83rem;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255, 255, 255, .65);
       text-decoration: none;
       margin-bottom: 10px;
       transition: color .16s
@@ -731,7 +748,7 @@
 
     .footer-copy {
       font-size: .76rem;
-      color: rgba(255, 255, 255, .25)
+      color: rgba(255, 255, 255, .65)
     }
 
     .footer-legal {
@@ -741,7 +758,7 @@
 
     .footer-legal a {
       font-size: .76rem;
-      color: rgba(255, 255, 255, .25);
+      color: rgba(255, 255, 255, .65);
       text-decoration: none;
       transition: color .16s
     }
@@ -914,26 +931,23 @@
       </div>
       <a href="products.html">Our Products</a>
       <a href="clinical.html">Clinical</a>
-      <div class="dropdown">
-        <a href="ifu.html">Resources</a>
-        <div class="dropdown-content">
-          <a href="ifu.html">IFU</a>
-          <a href="brochures.html">Brochures</a>
-          <a href="whitepapers.html">Whitepapers</a>
-        </div>
-      </div>
-      <a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>
+      <!--<div class="dropdown">-->
+      <!--  <a href="ifu.html">Resources</a>-->
+      <!--  <div class="dropdown-content">-->
+      <!--    <a href="ifu.html">IFU</a>-->
+      <!--    <a href="brochures.html">Brochures</a>-->
+      <!--    <a href="whitepapers.html">Whitepapers</a>-->
+      <!--  </div>-->
+      <!--</div>-->
+      <!--<a href="resources.html#samples" class="nav-btn-amber">Order Samples</a>-->
       <a href="contact.html" class="active nav-btn">Contact Us</a>
     </div>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
   </nav>
 
   <div class="hero">
@@ -1034,50 +1048,68 @@
         <button class="tab active" onclick="setTab(this,'General Inquiry')">General</button>
         <button class="tab" onclick="setTab(this,'DPNCheck — Clinical or Product Question')">Clinical / Product</button>
         <button class="tab" onclick="setTab(this,'Distributor or Partnership Inquiry')">Distributor / Partner</button>
-        <button class="tab" onclick="setTab(this,'Request Evaluation Samples')">Order Samples</button>
+        <!--<button class="tab" onclick="setTab(this,'Request Evaluation Samples')">Order Samples</button>-->
       </div>
 
-      <form id="cForm" onsubmit="doSubmit(event)">
-        <div class="f-grid">
-          <div class="f-group"><label class="f-lbl">First Name *</label><input type="text" placeholder="First name"
-              required></div>
-          <div class="f-group"><label class="f-lbl">Last Name *</label><input type="text" placeholder="Last name"
-              required></div>
-          <div class="f-group"><label class="f-lbl">Work Email *</label><input type="email"
-              placeholder="you@hospital.org" required></div>
-          <div class="f-group"><label class="f-lbl">Phone</label><input type="tel" placeholder="+1 (000) 000-0000">
-          </div>
-          <div class="f-group"><label class="f-lbl">Organization</label><input type="text"
-              placeholder="Hospital, clinic, or company"></div>
-          <div class="f-group"><label class="f-lbl">Role / Title</label><input type="text"
-              placeholder="e.g. Neurologist, Buyer"></div>
-          <div class="f-group span2">
-            <label class="f-lbl">Subject *</label>
-            <select id="subjectSel" required>
-              <option value="" disabled selected>Select a topic</option>
-              <option>General Inquiry</option>
-              <option>DPNCheck — Clinical or Product Question</option>
-              <option>Vascular Access Products</option>
-              <option>Request Evaluation Samples</option>
-              <option>Distributor or Partnership Inquiry</option>
-              <option>Investor Relations</option>
-              <option>Media or Press</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="f-group span2"><label class="f-lbl">Message *</label><textarea placeholder="How can we help?"
-              required></textarea></div>
-          <button type="submit" class="f-submit">
-            Send Message
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
-          </button>
-          <p class="f-note">We respond within 48 hours on business days.</p>
-        </div>
-      </form>
+      <form id="cForm" action="send-mail.php" method="post">
+  <div class="f-grid">
+
+    <div class="f-group">
+      <label class="f-lbl">First Name *</label>
+      <input type="text" name="first_name" placeholder="First name" required>
+    </div>
+
+    <div class="f-group">
+      <label class="f-lbl">Last Name *</label>
+      <input type="text" name="last_name" placeholder="Last name" required>
+    </div>
+
+    <div class="f-group">
+      <label class="f-lbl">Work Email *</label>
+      <input type="email" name="email" placeholder="you@hospital.org" required>
+    </div>
+
+    <div class="f-group">
+      <label class="f-lbl">Phone</label>
+      <input type="tel" name="phone" placeholder="+1 (000) 000-0000">
+    </div>
+
+    <div class="f-group">
+      <label class="f-lbl">Organization</label>
+      <input type="text" name="organization" placeholder="Hospital, clinic, or company">
+    </div>
+
+    <div class="f-group">
+      <label class="f-lbl">Role / Title</label>
+      <input type="text" name="role" placeholder="e.g. Neurologist, Buyer">
+    </div>
+
+    <div class="f-group span2">
+      <label class="f-lbl">Subject *</label>
+      <select name="subject" required>
+        <option value="" disabled selected>Select a topic</option>
+        <option>General Inquiry</option>
+        <option>DPNCheck — Clinical or Product Question</option>
+        <option>Vascular Access Products</option>
+        <option>Request Evaluation Samples</option>
+        <option>Distributor or Partnership Inquiry</option>
+        <option>Investor Relations</option>
+        <option>Media or Press</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="f-group span2">
+      <label class="f-lbl">Message *</label>
+      <textarea name="message" placeholder="How can we help?" required></textarea>
+    </div>
+
+    <button type="submit" class="f-submit">Send Message</button>
+
+    <p class="f-note">We respond within 48 hours on business days.</p>
+
+  </div>
+</form>
 
       <div class="f-success" id="fOk">
         <div class="s-ring">
@@ -1108,19 +1140,19 @@
         <a href="products.html">DPNCheck&reg;</a>
         <a href="products.html">Neurology</a>
         <a href="products.html">Vascular Access</a>
-        <a href="resources.html">Resources</a>
+        <!--<a href="resources.html">Resources</a>-->
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
         <a href="about.html">About Us</a>
         <a href="about.html">Our Approach</a>
-        <a href="#">News &amp; Events</a>
+        <!--<a href="#">News &amp; Events</a>-->
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Connect</div>
         <a href="contact.html">Contact Us</a>
         <a href="contact.html">Distributors</a>
-        <a href="resources.html#samples">Request Samples</a>
+        <!--<a href="resources.html#samples">Request Samples</a>-->
         <a href="https://www.linkedin.com/company/alera-medtech" target="_blank" rel="noopener" class="li-btn"><svg
             width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
             <path
@@ -1140,23 +1172,7 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    function setTab(btn, subject) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      const sel = document.getElementById('subjectSel');
-      for (let opt of sel.options) {
-        if (opt.text === subject) {
-          sel.value = opt.value;
-          break;
-        }
-      }
-    }
-
-    function doSubmit(e) {
-      e.preventDefault();
-      document.getElementById('cForm').style.display = 'none';
-      document.getElementById('fOk').classList.add('show');
-    }
+    
 
     // Mobile Navigation Toggle
     const navToggle = document.getElementById('navToggle');
