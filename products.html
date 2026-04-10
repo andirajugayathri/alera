@@ -1008,6 +1008,42 @@
       color: #fff !important;
     }
 
+    /* ─── DISCLAIMER ────────────────────────────────────────── */
+    .global-disclaimer {
+      background: var(--brand-tint);
+      padding: 48px 56px;
+      border-bottom: 1px solid var(--border-mid);
+      margin-top: 64px;
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .disclaimer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .disclaimer-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .disclaimer-text {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--slate);
+    }
+
+    .disclaimer-text p+p {
+      margin-top: 16px;
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 0 24px;
@@ -1101,9 +1137,15 @@
         grid-template-columns: 1fr;
         gap: 32px;
       }
+
       .footer-bottom {
         align-items: center;
         justify-content: center;
+      }
+
+      .global-disclaimer {
+        padding: 40px 24px;
+        margin-top: 56px;
       }
     }
   </style>
@@ -1148,6 +1190,21 @@
       </svg>
     </button>
   </nav>
+
+  <!-- ── GLOBAL DISCLAIMER ── -->
+  <section class="global-disclaimer">
+    <div class="disclaimer-container">
+      <div class="disclaimer-title">Global Product Disclaimer</div>
+      <div class="disclaimer-text">
+        <p>Products shown on this website may include devices that are commercially available as well as products under
+          development or pending regulatory review. Product specifications, availability, and regulatory status may
+          change without notice.</p>
+        <p>Not all products are approved or available for sale in all countries. Regulatory approvals, clearances, and
+          indications for use vary by jurisdiction. Customers and users should confirm the current product status and
+          country-specific regulatory approval with us before purchase, distribution, or clinical use.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ── PAGE HERO ── -->
   <div class="page-hero">
@@ -1222,7 +1279,7 @@
             longer procedures.</p>
           <div class="card-benefits">
             <div class="benefit">
-              <div class="b-dot"></div>Improved signal-to-noise ratio
+              <div class="b-dot"></div>Engineered for improved signal-to-noise ratio
             </div>
             <div class="benefit">
               <div class="b-dot"></div>Ergonomic grip reduces physician fatigue
@@ -1245,7 +1302,7 @@
             noisy environments.</p>
           <div class="card-benefits">
             <div class="benefit">
-              <div class="b-dot"></div>Low-impedance, high-fidelity signal
+              <div class="b-dot"></div>Engineered for low-impedance, high-fidelity signal
             </div>
             <div class="benefit">
               <div class="b-dot"></div>Simplified application for fast OR prep
@@ -1270,7 +1327,7 @@
               <div class="b-dot"></div>Hypoallergenic, latex-free materials
             </div>
             <div class="benefit">
-              <div class="b-dot"></div>Consistent gel conductivity across lot sizes
+              <div class="b-dot"></div>Engineered for consistent gel conductivity across lot sizes
             </div>
             <div class="benefit">
               <div class="b-dot"></div>Adult and pediatric sizes available
@@ -1309,7 +1366,9 @@
           </div>
           <div class="card-eyebrow-lg">Catheter Management</div>
           <div class="card-name-lg syne">SureSet™ Catheter Securement</div>
-          <p class="card-desc-lg">Catheter securement device built to reduce infections. The current standard relies on
+          <p class="card-desc-lg">SureSet was designed to address the known risk factors associated with
+            catheter-associated infection such as dislodgement, site access without removal, and user variability. The
+            current standard relies on
             tape and suture, which varies widely by user and fails under real ward conditions. SureSet uses integrated
             antimicrobial design and one-handed application to take that variability out of the equation.</p>
           <div class="card-benefits-lg">
@@ -1336,7 +1395,7 @@
           <div class="card-eyebrow">Prefilled Flush Syringes</div>
           <div class="card-name syne">Duoflush™ Prefilled Syringes</div>
           <p class="card-desc">Prefilled flush syringes with tamper-evident closure and ergonomic plunger. Cuts prep
-            time at the bedside and lowers the risk of medication errors associated with manually drawn flushes.</p>
+            time at the bedside and lowers the risk of medication errors associated with manually drawn flushes (Bertoglio S, et al. J Hosp Infect. 2013;84(1):85-7. DOI: 10.1016/j.jhin.2013.02.008).</p>
           <div class="card-benefits">
             <div class="benefit">
               <div class="b-dot"></div>24-month shelf life with stable pH
@@ -1431,8 +1490,8 @@
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 Alera Medtech, Inc. All rights reserved.</div>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
         <a href="#">Regulatory</a>
       </div>
     </div>
