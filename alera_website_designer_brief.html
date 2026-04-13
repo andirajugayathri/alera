@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alera Medtech Website — Designer Change Brief</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #1a2530; font-size: 14px; line-height: 1.6; }
+
+  .header { background: #0D2233; padding: 32px 48px; }
+  .header h1 { color: white; font-size: 24px; font-weight: 300; }
+  .header h1 strong { color: #6ABFB0; font-weight: 600; }
+  .header p { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 6px; }
+
+  .body { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+
+  .intro { background: white; border: 1px solid #D0CBC0; border-left: 4px solid #1B8B7E; padding: 20px 24px; border-radius: 4px; margin-bottom: 36px; }
+  .intro p { font-size: 13px; color: #5A6B78; line-height: 1.7; }
+  .intro p + p { margin-top: 8px; }
+
+  .page-section { margin-bottom: 40px; }
+  .page-label {
+    background: #0D2233;
+    color: #6ABFB0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 4px 4px 0 0;
+    display: inline-block;
+  }
+  .page-changes { background: white; border: 1px solid #D0CBC0; border-radius: 0 4px 4px 4px; overflow: hidden; }
+
+  .change-item { padding: 20px 24px; border-bottom: 1px solid #f0ebe3; }
+  .change-item:last-child { border-bottom: none; }
+
+  .change-type {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .type-text { background: #E8F5F3; color: #0F6E56; }
+  .type-remove { background: #FCEBEB; color: #A32D2D; }
+  .type-style { background: #EDE9DF; color: #5A4010; }
+  .type-add { background: #EAF3DE; color: #3B6D11; }
+  .type-citation { background: #E6F1FB; color: #185FA5; }
+
+  .location { font-size: 11px; font-weight: 600; color: #0D2233; margin-bottom: 10px; }
+
+  .change-block { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+  .change-block.single { grid-template-columns: 1fr; }
+
+  .old-text, .new-text { padding: 12px 14px; border-radius: 4px; font-size: 12px; line-height: 1.65; }
+  .old-text { background: #FEF2F2; border: 1px solid #FECACA; color: #7F1D1D; }
+  .new-text { background: #F0FDF4; border: 1px solid #BBF7D0; color: #14532D; }
+  .old-label, .new-label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .old-label { color: #A32D2D; }
+  .new-label { color: #3B6D11; }
+
+  .note-text { background: #F6F3ED; border: 1px solid #D0CBC0; border-radius: 4px; padding: 12px 14px; font-size: 12px; color: #5A6B78; line-height: 1.65; margin-top: 10px; }
+
+  .summary-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #D0CBC0; border-radius: 4px; overflow: hidden; margin-top: 32px; }
+  .summary-table th { background: #0D2233; color: white; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 16px; text-align: left; }
+  .summary-table td { font-size: 12px; color: #1a2530; padding: 10px 16px; border-bottom: 1px solid #f0ebe3; vertical-align: top; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table td:first-child { font-weight: 600; color: #0D2233; width: 120px; }
+
+  .footer { background: #0D2233; padding: 20px 48px; margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Alera Medtech Website — <strong>Designer Change Brief</strong></h1>
+  <p>Prepared by Elle, Creative Director &nbsp;|&nbsp; Reference: alera_website_crawl.html (original) vs. alera_website_crawl_v5.html (approved final) &nbsp;|&nbsp; April 2026</p>
+</div>
+
+<div class="body">
+
+  <div class="intro">
+    <p>This document lists every content and styling change that must be applied to the live Alera Medtech website to bring it into alignment with the approved v5 reference file. Changes are organized by page and element. No structural or layout changes are required — all edits are to copy, data values, citations, and one styling upgrade to the global disclaimer component.</p>
+    <p>The email obfuscation hash differences in the Contact page are a Cloudflare artifact and do not require action — they will resolve automatically in the live environment.</p>
+  </div>
+
+
+  <!-- ═══ GLOBAL STYLING ═══ -->
+  <div class="page-section">
+    <div class="page-label">Global — Disclaimer Component Style</div>
+    <div class="page-changes">
+
+      <div class="change-item">
+        <span class="change-type type-style">Style Update</span>
+        <div class="location">CSS — .disclaimer class &nbsp;|&nbsp; Applies to Products page and any page using the .disclaimer component</div>
+        <p style="font-size:12px; color:#5A6B78; margin-bottom:10px">Increase visual weight of the disclaimer box so it reads prominently above product content. Also add two new CSS classes: <code>.disclaimer strong</code> and <code>.device-notice</code>.</p>
+        <div class="change-block">
+          <div>
+            <div class="old-label">Current CSS</div>
+            <div class="old-text">.disclaimer { background: #fff8e8; border: 1px solid #e8c840; border-left: 3px solid #c8963a; padding: 14px 18px; border-radius: 4px; margin-bottom: 28px; font-size: 12px; color: #5a4010; line-height: 1.6; }</div>
+          </div>
+          <div>
+            <div class="new-label">Approved CSS</div>
+            <div class="new-text">.disclaimer { background: #fff8e8; border: 1px solid #c8963a; border-left: 4px solid #c8963a; padding: 16px 20px; border-radius: 4px; margin-bottom: 32px; font-size: 13px; color: #5a4010; line-height: 1.7; font-weight: 500; }
+.disclaimer strong { color: #7A5010; }
+.device-notice { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #c8963a; background: #fff8e8; border: 1px solid #e8c840; padding: 3px 8px; border-radius: 2px; }</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ HOME PAGE ═══ -->
+  <div class="page-section">
+    <div class="page-label">Home Page (index)</div>
+    <div class="page-changes">
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Hero paragraph</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">...on every day — categories where progress has stalled...</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">...on every day, in categories where progress has stalled...</div></div>
+        </div>
+        <div class="note-text">Emdash removed. Replace with comma.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Stat row — first stat box (30+)</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Years of stagnation in routine neurology &amp; vascular access devices</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">A device category where progress has been incremental for decades</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Stat row — third stat box (30M)</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Americans affected by peripheral neuropathy — often undetected</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Americans affected by peripheral neuropathy, often undetected</div></div>
+        </div>
+        <div class="note-text">Emdash removed. Replace with comma.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Rewrite</span>
+        <div class="location">Body section — paragraph below "Better devices. Better outcomes. Delivered faster."</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove entire sentence</div><div class="old-text">We apply modern engineering, advanced materials, and clinician-centered design to reimagine essential devices entirely — bypassing the delays of traditional development to bring meaningful advancements to market quickly and cost-effectively.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Our engineering teams start with published failure data and direct clinician input, then build devices around those specific failure modes — using materials and manufacturing methods selected for performance, not for precedent. The goal is devices that hold up under the actual conditions of daily clinical use, at prices health systems can justify.</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Accessible Pricing card — body text</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Innovative devices at accessible prices — making quality available to health systems everywhere.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Innovative devices at accessible prices, making quality available to health systems everywhere.</div></div>
+        </div>
+        <div class="note-text">Emdash removed. Replace with comma.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit + Citation</span>
+        <div class="location">Second stat row — "Why It Matters" section (three boxes)</div>
+        <div class="change-block">
+          <div>
+            <div class="old-label">Remove (all three)</div>
+            <div class="old-text">
+              Box 1 number: 330M &nbsp;|&nbsp; Label: "Peripheral IV catheters used in the US each year; 1 in 3 fails before treatment is complete"<br><br>
+              Box 2 number: 40% &nbsp;|&nbsp; Label: "Current peripheral catheter failure rate — unchanged despite decades of clinical use"<br><br>
+              Box 3 number: 30+ &nbsp;|&nbsp; Label: "Years of stagnation. Core neurology and vascular devices have barely changed."
+            </div>
+          </div>
+          <div>
+            <div class="new-label">Replace with (all three)</div>
+            <div class="new-text">
+              Box 1 number: ~330M &nbsp;|&nbsp; Label: "Peripheral IV catheters used in the US annually (Hadaway, J Infusion Nursing, 2012); 1 in 3 fails before treatment is complete (Marsh et al., Int J Nursing Studies, 2024)"<br><br>
+              Box 2 number: 35–50% &nbsp;|&nbsp; Label: "Peripheral IV catheter failure before treatment completion. Despite decades of clinical use and advances in practice (Marsh et al., Int J Nursing Studies, 2024;151:104673)"<br><br>
+              Box 3 number: 30+ &nbsp;|&nbsp; Label: "A device category where progress has been incremental for decades. Core neurology and vascular devices have seen limited meaningful change."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Vascular Access card — body text (Specialty 02 section)</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Transforming the foundational devices used in vascular access procedures — from catheter securement to infection control — with modern materials.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Transforming the foundational devices used in vascular access procedures, from catheter securement to infection control, with modern materials.</div></div>
+        </div>
+        <div class="note-text">Two emdashes removed. Replace with commas.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">CTA block — paragraph text</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Whether you're a clinician, a health system, or a distributor — we'd like to hear from you.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Whether you're a clinician, a health system, or a distributor, we'd like to hear from you.</div></div>
+        </div>
+        <div class="note-text">Emdash removed. Replace with comma.</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ ABOUT PAGE ═══ -->
+  <div class="page-section">
+    <div class="page-label">About Page</div>
+    <div class="page-changes">
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">The Challenge section — body paragraph</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">...many core devices used routinely — hypodermic needle electrodes, IONM electrodes, catheter securement devices, prefilled syringes, infection control caps — have changed very little...</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">...many core devices used routinely (hypodermic needle electrodes, IONM electrodes, catheter securement devices, prefilled syringes, infection control caps) have changed very little...</div></div>
+        </div>
+        <div class="note-text">Two emdashes removed. Replace with parentheses.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Section heading — "What We Build"</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">What We Build — Advancing care quickly.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">What We Build: Advancing care quickly.</div></div>
+        </div>
+        <div class="note-text">Emdash replaced with colon.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Vascular Access section — body paragraph</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">These solutions help avoid dislodgement and migration while minimizing infections.</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">These solutions help avoid dislodgement and migration while supporting stable catheter position throughout the wear period.</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">Vascular Access section — Duoflush list item</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Dermaflush and Duoflush — next-generation saline flush syringes</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Dermaflush and Duoflush: next-generation saline flush syringes</div></div>
+        </div>
+        <div class="note-text">Emdash replaced with colon.</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ PRODUCTS PAGE ═══ -->
+  <div class="page-section">
+    <div class="page-label">Products Page</div>
+    <div class="page-changes">
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">DPNCheck® card — bullet list item 2</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">No specialist referral needed — works in primary care</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">No specialist referral needed; works in primary care</div></div>
+        </div>
+        <div class="note-text">Emdash replaced with semicolon.</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">DPNCheck® card — bullet list item 4</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Detects neuropathy before nerves are damaged or dead</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Detects neuropathy at an early stage, including in patients who are asymptomatic (ADA Standards of Care 2024)</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Device Notice Added</span>
+        <div class="location">Hypodermic Needle Electrodes card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Add a small amber notice tag reading: "Not yet commercially available. Pending regulatory review."<br><br>Style: small caps, amber text (#c8963a), amber background (#fff8e8), amber border (#e8c840), 3px 8px padding, inline-block.</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Device Notice Added</span>
+        <div class="location">IONM Electrode System card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Same amber notice tag: "Not yet commercially available. Pending regulatory review."</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Device Notice Added</span>
+        <div class="location">Surface Electrode Suite card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Same amber notice tag: "Not yet commercially available. Pending regulatory review."</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-remove">Copy Removed + Revised</span>
+        <div class="location">SureSet™ Catheter Securement card — bullet list (3 items replaced with 2)</div>
+        <div class="change-block">
+          <div>
+            <div class="old-label">Remove all three bullets</div>
+            <div class="old-text">• Integrated antimicrobial barrier at insertion site<br>• One-handed application reduces nursing time<br>• Standardized hold force across all users</div>
+          </div>
+          <div>
+            <div class="new-label">Replace with two bullets</div>
+            <div class="new-text">• Designed for one-handed application.<br>• Click-close mechanism designed to deliver consistent securement.</div>
+          </div>
+        </div>
+        <div class="note-text">The "Transparent window enables site assessment without removal" bullet is retained as-is (no change).</div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Regulatory Notice Added</span>
+        <div class="location">SureSet™ Catheter Securement card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Add amber notice tag reading: "FDA Class I | 21 CFR 880.5210 | FDA Product Code: KMK"<br><br>Same style as the "Not yet commercially available" notices on other cards.</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Device Notice Added</span>
+        <div class="location">Duoflush™ Prefilled Syringes card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Same amber notice tag: "Not yet commercially available. Pending regulatory review."</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-add">Device Notice Added</span>
+        <div class="location">ClynCap™ IV Caps card — below bullet list</div>
+        <div class="change-block single">
+          <div><div class="new-label">Add below the bullet list</div><div class="new-text">Same amber notice tag: "Not yet commercially available. Pending regulatory review."</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ CLINICAL PAGE ═══ -->
+  <div class="page-section">
+    <div class="page-label">Clinical Page</div>
+    <div class="page-changes">
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit + Citation</span>
+        <div class="location">DPNCheck stat row — Sensitivity stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Number: 87%<br>Label: "Sensitivity for detecting diabetic peripheral neuropathy" (no citation)</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Number: Up to 92%<br>Label: "Sensitivity for detecting diabetic sensorimotor polyneuropathy in clinical studies (Perkins BA et al. Diabetes Care. 2006;29(9):2023–2027)"</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-citation">Citation Corrected</span>
+        <div class="location">DPNCheck stat row — Specificity stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Number: 92%<br>Label: "Specificity vs. traditional nerve conduction studies" (no citation)</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Number: Up to 94%<br>Label: "Specificity vs. traditional nerve conduction studies (Lee et al. PLOS ONE. 2014;9(6):e99956)"</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-citation">Citation Added</span>
+        <div class="location">DPNCheck stat row — 95% Specificity stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Number: 95%<br>Label: "Specificity when referenced against healthy controls" (no citation)</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Number: 95%<br>Label: "Specificity when referenced against healthy controls (Hayashi et al. J Diabetes Investig. 2024)"</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-citation">Citation Corrected</span>
+        <div class="location">DPNCheck stat row — ICC 0.97 stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Number: ICC 0.97<br>Label: "Inter-rater reliability for conduction velocity (ICC 2,1)" (no citation)</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Number: ICC 0.97<br>Label: "Inter-rater reliability for conduction velocity (ICC 2,1) (Shibata et al. J Diabetes Investig. 2019, PMID 30659760; Grabowska et al. Sci Rep. 2023)"</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-citation">Citation Added</span>
+        <div class="location">DPNCheck stat row — ICC 0.94 stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Number: ICC 0.94<br>Label: "Inter-rater reliability across independent operators" (no citation)</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Number: ICC 0.94<br>Label: "Inter-rater reliability across independent operators (Grabowska et al. Sci Rep. 2023)"</div></div>
+        </div>
+      </div>
+
+      <div class="change-item">
+        <span class="change-type type-text">Copy Edit</span>
+        <div class="location">DPNCheck stat row — "30s" stat box</div>
+        <div class="change-block">
+          <div><div class="old-label">Remove</div><div class="old-text">Typical test time per foot — no specialist required</div></div>
+          <div><div class="new-label">Replace with</div><div class="new-text">Typical test time per foot; no specialist required</div></div>
+        </div>
+        <div class="note-text">Emdash replaced with semicolon.</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SUMMARY TABLE -->
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Change Type</th>
+        <th>Count</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Global CSS</td><td>Style upgrade</td><td>1</td><td>Disclaimer component — heavier border, larger font, two new classes added</td></tr>
+      <tr><td>Home</td><td>Emdash removal</td><td>5</td><td>Hero, stat box, Accessible Pricing card, Vascular Access card (×2), CTA block</td></tr>
+      <tr><td>Home</td><td>Copy rewrite</td><td>1</td><td>"Modern engineering / reimagine / bypassing" paragraph replaced</td></tr>
+      <tr><td>Home</td><td>Stat box copy + citation</td><td>3</td><td>330M, 40%→35–50%, and second "30+" box all updated with evidence-based language and citations</td></tr>
+      <tr><td>About</td><td>Emdash removal</td><td>4</td><td>Challenge paragraph (×2), "What We Build" heading, Duoflush bullet</td></tr>
+      <tr><td>About</td><td>Copy edit</td><td>1</td><td>"Minimizing infections" replaced with "supporting stable catheter position throughout the wear period"</td></tr>
+      <tr><td>Products</td><td>Emdash removal</td><td>1</td><td>DPNCheck referral bullet</td></tr>
+      <tr><td>Products</td><td>Claim removal</td><td>1</td><td>"Integrated antimicrobial barrier at insertion site" removed from SureSet card</td></tr>
+      <tr><td>Products</td><td>Copy revision</td><td>2</td><td>SureSet bullet rewrites (one-handed application, hold force)</td></tr>
+      <tr><td>Products</td><td>Copy revision</td><td>1</td><td>DPNCheck "nerves damaged or dead" bullet replaced with cited asymptomatic detection claim</td></tr>
+      <tr><td>Products</td><td>Device notices added</td><td>6</td><td>Five "Not yet commercially available" notices + one SureSet FDA classification notice</td></tr>
+      <tr><td>Clinical</td><td>Number corrected</td><td>2</td><td>87%→Up to 92% (sensitivity); 92%→Up to 94% (specificity)</td></tr>
+      <tr><td>Clinical</td><td>Citations added/corrected</td><td>4</td><td>Sensitivity (Perkins 2006), Specificity (Lee 2014), 95% (Hayashi 2024), ICC 0.97 (Shibata 2019 + Grabowska 2023), ICC 0.94 (Grabowska 2023)</td></tr>
+      <tr><td>Clinical</td><td>Emdash removal</td><td>1</td><td>"30s" stat box</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="footer">
+  Alera Medtech LLC &nbsp;|&nbsp; Website Change Brief v5 &nbsp;|&nbsp; For design team use only &nbsp;|&nbsp; April 2026
+</div>
+
+</body>
+</html>

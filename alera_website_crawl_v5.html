@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alera Medtech — Website Crawl</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D2233;
+    --teal: #1B8B7E;
+    --teal-l: #6ABFB0;
+    --cream: #F6F3ED;
+    --white: #ffffff;
+    --ink: #1A2530;
+    --muted: #5A6B78;
+    --rule: #D0CBC0;
+  }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f0f0; color: var(--ink); }
+
+  /* SITE NAV (replica) */
+  .site-nav {
+    background: var(--navy);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .nav-logo { font-size: 22px; font-weight: 700; color: white; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.1); color: white; }
+  .nav-links a.active { background: var(--teal); color: white; }
+
+  /* PAGE TABS */
+  .page-tabs {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .page-tab {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .page-tab:hover { color: rgba(255,255,255,0.8); }
+  .page-tab.active { color: var(--teal-l); border-bottom-color: var(--teal-l); }
+
+  /* PAGE SECTIONS */
+  .page-section { display: none; }
+  .page-section.active { display: block; }
+
+  /* PAGE HERO */
+  .page-hero {
+    background: var(--navy);
+    padding: 48px 40px 40px;
+    border-bottom: 3px solid var(--teal);
+  }
+  .page-hero .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-l);
+    margin-bottom: 10px;
+  }
+  .page-hero h1 {
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .page-hero h1 em { color: var(--teal-l); font-style: italic; }
+  .page-hero p { font-size: 14px; color: rgba(255,255,255,0.65); max-width: 680px; line-height: 1.6; }
+
+  /* CONTENT BODY */
+  .content-body { max-width: 1100px; margin: 0 auto; padding: 40px; }
+
+  /* STAT ROW */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 32px 0; }
+  .stat-box {
+    background: var(--navy);
+    padding: 24px 20px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat-num { font-size: 32px; font-weight: 700; color: var(--teal-l); line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+  /* SECTION HEADING */
+  .section-h { font-size: 22px; font-weight: 600; color: var(--navy); margin: 32px 0 16px; }
+  .section-h em { color: var(--teal); font-style: italic; }
+  .section-sub { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; max-width: 720px; }
+
+  /* GRID CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 24px 0; }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+  .card h3 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .card ul { padding-left: 16px; margin-top: 10px; }
+  .card ul li { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 4px; }
+  .card .badge {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  /* TEAM GRID */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 24px 0; }
+  .team-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .team-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .team-info .role { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+  .team-info .name { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .team-info p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* PUBLICATIONS */
+  .pub-list { margin: 20px 0; }
+  .pub-item {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .pub-year { font-size: 11px; font-weight: 700; color: var(--teal); min-width: 36px; padding-top: 2px; }
+  .pub-detail { flex: 1; }
+  .pub-detail .authors { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .pub-detail .title { font-size: 12px; color: var(--ink); line-height: 1.5; margin-bottom: 3px; }
+  .pub-detail .journal { font-size: 11px; color: var(--muted); font-style: italic; }
+  .pub-type { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--cream); color: var(--teal); padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+
+  /* CONTACT */
+  .office-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 24px 0; }
+  .office-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .office-card .region { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .office-card .city { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .office-card address { font-size: 12px; color: var(--muted); line-height: 1.7; font-style: normal; }
+
+  /* PRODUCTS TABLE */
+  .spec-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 6px; overflow: hidden; border: 1px solid var(--rule); }
+  .spec-table th { background: var(--navy); color: white; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 16px; text-align: left; }
+  .spec-table td { font-size: 13px; color: var(--ink); padding: 12px 16px; border-bottom: 1px solid var(--rule); }
+  .spec-table tr:last-child td { border-bottom: none; }
+  .spec-table td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--rule); margin: 32px 0; }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--navy);
+    padding: 32px 40px;
+    margin-top: 48px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; max-width: 1100px; margin: 0 auto; }
+  .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; line-height: 1.6; max-width: 260px; }
+  .footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+  .footer-col a { display: block; font-size: 12px; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 8px; }
+  .footer-col a:hover { color: var(--teal-l); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 28px; font-size: 11px; color: rgba(255,255,255,0.3); max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+  /* PILL TAGS */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .pill { border: 1px solid var(--teal); color: var(--teal); font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 500; }
+
+  /* CTA */
+  .cta-block {
+    background: var(--navy);
+    padding: 36px 40px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .cta-block h3 { font-size: 20px; font-weight: 300; color: white; }
+  .cta-block h3 em { color: var(--teal-l); font-style: italic; }
+  .cta-block p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+  .cta-btn {
+    background: var(--teal);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer { background: #fff8e8; border: 1px solid #c8963a; border-left: 4px solid #c8963a; padding: 16px 20px; border-radius: 4px; margin-bottom: 32px; font-size: 13px; color: #5a4010; line-height: 1.7; font-weight: 500; }
+  .disclaimer strong { color: #7A5010; }
+  .device-notice { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #c8963a; background: #fff8e8; border: 1px solid #e8c840; padding: 3px 8px; border-radius: 2px; }
+
+  /* PROCESS STEPS */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; counter-reset: step; }
+  .step { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 20px; position: relative; counter-increment: step; }
+  .step::before { content: counter(step); position: absolute; top: 16px; right: 16px; width: 28px; height: 28px; background: var(--teal); color: white; border-radius: 50%; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .step h4 { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; padding-right: 36px; }
+  .step p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="site-nav">
+  <div class="nav-logo">alera</div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a href="#" onclick="showPage('about')" id="nav-about">About Us</a>
+    <a href="#" onclick="showPage('team')" id="nav-team">Our Team</a>
+    <a href="#" onclick="showPage('products')" id="nav-products">Products</a>
+    <a href="#" onclick="showPage('clinical')" id="nav-clinical">Clinical</a>
+    <a href="#" onclick="showPage('contact')" id="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- PAGE TABS -->
+<div class="page-tabs">
+  <div class="page-tab active" onclick="showPage('home')" id="tab-home">Home (index.html)</div>
+  <div class="page-tab" onclick="showPage('about')" id="tab-about">about.html</div>
+  <div class="page-tab" onclick="showPage('team')" id="tab-team">our-team.html</div>
+  <div class="page-tab" onclick="showPage('products')" id="tab-products">products.html</div>
+  <div class="page-tab" onclick="showPage('clinical')" id="tab-clinical">clinical.html</div>
+  <div class="page-tab" onclick="showPage('contact')" id="tab-contact">contact.html</div>
+</div>
+
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page-section active" id="page-home">
+  <div class="page-hero">
+    <div class="eyebrow">Neurology &amp; Vascular Access</div>
+    <h1>Legacy Devices. <em>Reimagined.</em></h1>
+    <p>Alera Medtech brings real engineering innovation to the medical devices clinicians depend on every day, in categories where progress has stalled for decades. We're changing that.</p>
+  </div>
+
+  <div class="content-body">
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-label">A device category where progress has been incremental for decades</div></div>
+      <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">Core specialties where under-innovation persists at scale</div></div>
+      <div class="stat-box"><div class="stat-num">30M</div><div class="stat-label">Americans affected by peripheral neuropathy, often undetected</div></div>
+      <div class="stat-box"><div class="stat-num">Boston</div><div class="stat-label">Headquartered in Boston, MA with an expanding global presence</div></div>
+    </div>
+
+    <h2 class="section-h">Better devices. Better outcomes. <em>Delivered faster.</em></h2>
+    <p class="section-sub">Our engineering teams start with published failure data and direct clinician input, then build devices around those specific failure modes — using materials and manufacturing methods selected for performance, not for precedent. The goal is devices that hold up under the actual conditions of daily clinical use, at prices health systems can justify.</p>
+
+    <div class="card-grid">
+      <div class="card"><div class="card-label">01</div><h3>Target Under-Innovated Categories</h3><p>High-impact device segments that form the daily foundation of care but have seen little meaningful progress.</p></div>
+      <div class="card"><div class="card-label">02</div><h3>Redesign with Purpose</h3><p>Achieve meaningful improvements in usability, signal accuracy, and seamless integration into fast-paced clinical workflows.</p></div>
+      <div class="card"><div class="card-label">03</div><h3>Scale Efficiently</h3><p>Streamlined manufacturing that drives cost efficiencies without compromising quality or performance.</p></div>
+      <div class="card"><div class="card-label">04</div><h3>Accessible Pricing</h3><p>Innovative devices at accessible prices, making quality available to health systems everywhere.</p></div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">The case for reimagining <em>essential medical devices.</em></h2>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">~330M</div><div class="stat-label">Peripheral IV catheters used in the US annually (Hadaway, J Infusion Nursing, 2012); 1 in 3 fails before treatment is complete (Marsh et al., Int J Nursing Studies, 2024)</div></div>
+      <div class="stat-box"><div class="stat-num">35–50%</div><div class="stat-label">Peripheral IV catheter failure before treatment completion. Despite decades of clinical use and advances in practice (Marsh et al., Int J Nursing Studies, 2024;151:104673)</div></div>
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-label">A device category where progress has been incremental for decades. Core neurology and vascular devices have seen limited meaningful change.</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">Where our innovation <em>is focused.</em></h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Specialty 01 — Neurology</div>
+        <h3>Neurology</h3>
+        <p>Reimagining the electrodes, monitoring devices, and point-of-care diagnostic tools that neurologists and neurodiagnostic teams depend on daily.</p>
+        <ul><li>DPNCheck®</li><li>Cernode™ Medical Electrodes</li><li>Hypodermic Needle Electrodes</li><li>IONM Electrodes</li><li>EEG &amp; EMG Electrodes</li></ul>
+      </div>
+      <div class="card">
+        <div class="card-label">Specialty 02 — Vascular Access</div>
+        <h3>Vascular Access</h3>
+        <p>Transforming the foundational devices used in vascular access procedures, from catheter securement to infection control, with modern materials.</p>
+        <ul><li>SureSet™ Catheter Securement</li><li>ClynCap™ Devices for Infection Control</li><li>Dermaflush™ Prefilled Flush Syringes</li></ul>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div><h3>Ready to bring better devices <em>to your patients?</em></h3><p>Whether you're a clinician, a health system, or a distributor, we'd like to hear from you.</p></div>
+      <a class="cta-btn" href="#" onclick="showPage('contact')">Contact Our Team</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div class="page-section" id="page-about">
+  <div class="page-hero">
+    <div class="eyebrow">About Alera</div>
+    <h1>Alera Medtech: <em>Innovation with Purpose.</em></h1>
+    <p>Alera Medtech is committed to bringing real innovation to medical devices that clinicians and patients depend on every day, with a particular focus on neurology and vascular access.</p>
+  </div>
+
+  <div class="content-body">
+    <h2 class="section-h">The Challenge</h2>
+    <p class="section-sub">In these high-stakes fields, many core devices used routinely (hypodermic needle electrodes, IONM electrodes, catheter securement devices, prefilled syringes, infection control caps) have changed very little over the past several decades. While other areas of patient care have made tremendous strides, these essential devices have not kept pace. The innovation has been incremental at best and stagnant at worst. We set out to change this.</p>
+
+    <div class="divider"></div>
+    <h2 class="section-h">How we <em>follow our mission.</em></h2>
+    <div class="card-grid">
+      <div class="card"><h3>Focused Innovation</h3><p>Target segments that serve as the foundation of neurological and vascular access but have seen limited meaningful progress.</p></div>
+      <div class="card"><h3>Modern Design &amp; Performance</h3><p>Redesign with meaningful enhancements in usability, clinical outcomes, signal accuracy, and seamless integration into fast-paced workflows.</p></div>
+      <div class="card"><h3>Efficient Manufacturing</h3><p>Scale manufacturing in ways that drive sustainable cost efficiencies.</p></div>
+      <div class="card"><h3>Affordable Quality</h3><p>Offer improved devices at affordable prices, making better quality accessible without any drop in standards.</p></div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">What We Build: <em>Advancing care quickly.</em></h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Vascular Access</div>
+        <h3>Alera Vascular Solutions</h3>
+        <p>Advanced securement and infusion solutions designed to minimize complications and improve workflow efficiency. These solutions help avoid dislodgement and migration while supporting stable catheter position throughout the wear period.</p>
+        <ul><li>Alera Medtech Securement Systems featuring SafeTrak Strain Relief Technology</li><li>Dermaflush and Duoflush: next-generation saline flush syringes</li></ul>
+      </div>
+      <div class="card">
+        <div class="card-label">Neurology</div>
+        <h3>Cernode Range</h3>
+        <p>Neurology products supporting accurate and reliable neurodiagnostic recording and monitoring. Engineered for consistent signal capture, user-friendly application, and patient comfort.</p>
+        <ul><li>Hypodermic needle electrodes</li><li>EEG &amp; EMG electrodes</li><li>IONM electrodes and accessories</li></ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">Our Philosophy</h2>
+    <div class="card-grid">
+      <div class="card"><h3>Simplicity First</h3><p>Devices should support clinicians and simplify care.</p></div>
+      <div class="card"><h3>Protect the Patient</h3><p>Safety and comfort guide every design decision.</p></div>
+      <div class="card"><h3>IP With Purpose</h3><p>IP should represent real clinical value and functional advancement.</p></div>
+      <div class="card"><h3>Access for All</h3><p>Innovation is only meaningful when patients can afford it.</p></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ TEAM PAGE ═══════════════ -->
+<div class="page-section" id="page-team">
+  <div class="page-hero">
+    <div class="eyebrow">Our Team</div>
+    <h1>The people behind <em>Alera Medtech.</em></h1>
+    <p>Our leadership team brings together clinical expertise, engineering depth, and decades of experience building and scaling medical device companies.</p>
+  </div>
+
+  <div class="content-body">
+    <h2 class="section-h">Built by people who <em>have done this before.</em></h2>
+    <p class="section-sub">Each member of our leadership team has spent careers inside major medical device companies and high-growth startups. They know how devices get from concept to clinic, and what it takes to do it right.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">MZA</div>
+        <div class="team-info">
+          <div class="role">Chairman</div>
+          <div class="name">M. Z. Ahmad</div>
+          <p>Founder of Arkoza Group, a Toronto-based family office with investments in healthcare, IT, and real estate. Leads several IT companies focused on data compression, machine learning, security, and business process automation with operations spanning North America, the Middle East, North Africa, and South and Central Asia.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SV</div>
+        <div class="team-info">
+          <div class="role">Co-Chairman</div>
+          <div class="name">Satish Vankayalapati</div>
+          <p>Co-Founder of medical device and healthcare companies. Previously Advisor to a $1B healthcare impact fund, President of Capri Capital Partners ($3.6B AUM), and Partner at McKinsey &amp; Company where he established the Doha office and co-led infrastructure and technology practices.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">RR</div>
+        <div class="team-info">
+          <div class="role">President &amp; CEO</div>
+          <div class="name">Robert Rudelius</div>
+          <p>Managing Partner of UrbanX Global. Founded Noble Ventures. Board roles at PetVivo Holdings and Axogen. Career includes CEO of Media DVX, President and COO of Control Data Systems, Managing Partner of AT&amp;T Solutions, and Partner at McKinsey leading IT practice in Japan and the UK.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SB</div>
+        <div class="team-info">
+          <div class="role">EVP, Population Health &amp; Global Clinical Partnerships</div>
+          <div class="name">Sue Bell, RN, BN</div>
+          <p>Registered nurse with 20+ years commercializing medical technologies. Previously SVP Population Health and CCO for DPNCheck at NeuroMetrix. Senior roles at Cecelia Health, CareCentrix, ZeOmega, Bosch Healthcare, and VITAS Healthcare. Leads Alera's commercialization and global market expansion.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">BR</div>
+        <div class="team-info">
+          <div class="role">EVP, Engineering &amp; Product Development</div>
+          <div class="name">Bob Rioux</div>
+          <p>Over 25 years in medical device development with 130 issued U.S. patents. Specializes in minimally invasive and electrosurgical systems. Previously held engineering leadership roles at Boston Scientific, Hologic, and AngioDynamics.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">CL</div>
+        <div class="team-info">
+          <div class="role">EVP, Business Development</div>
+          <div class="name">Christopher G. LaFarge</div>
+          <p>Strategic leader across early-stage life science and medical device companies. Inventor of ProstaMetrix; previously COO of Bach Pharma. Experience spans urology, anesthesiology, intensive care, and neuroscience. MBA from Yale; BA in Biology from Harvard College.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">CS</div>
+        <div class="team-info">
+          <div class="role">EVP, Regulatory &amp; Quality Management</div>
+          <div class="name">Carla Sivak</div>
+          <p>Over 25 years leading quality, regulatory, and clinical research at Johnson &amp; Johnson, Edwards Life Sciences, Philips Healthcare, and C.R. Bard. Former Vascular Access Registered Nurse with MS in computer science. Specializes in guiding startup medtech companies through global regulatory clearance.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SP</div>
+        <div class="team-info">
+          <div class="role">Country General Manager, India</div>
+          <div class="name">Sneha Pandit</div>
+          <p>Leads Alera's manufacturing hub in Pune, covering production planning, operations, and quality and regulatory affairs. Over 10 years in the medical device sector with background spanning manufacturing, quality systems, and cross-functional regulatory coordination.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div><h3>Talk to <em>our team.</em></h3><p>Clinicians, health systems, distributors, and purchasing teams are all welcome.</p></div>
+      <a class="cta-btn" href="#" onclick="showPage('contact')">Contact Our Team</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ PRODUCTS PAGE ═══════════════ -->
+<div class="page-section" id="page-products">
+  <div class="page-hero">
+    <div class="eyebrow">Our Product Portfolio</div>
+    <h1>Legacy Devices. <em>Reimagined.</em></h1>
+    <p>Neurology and Vascular Access Devices. Each one built to fix a specific problem that the existing device didn't solve.</p>
+  </div>
+
+  <div class="content-body">
+    <div class="disclaimer">
+      <strong>Global Product Disclaimer:</strong> Products shown on this website may include devices that are commercially available as well as products under development or pending regulatory review. Product specifications, availability, and regulatory status may change without notice. Not all products are approved or available for sale in all countries. Regulatory approvals, clearances, and indications for use vary by jurisdiction. Customers and users should confirm the current product status and country-specific regulatory approval with us before purchase, distribution, or clinical use.
+    </div>
+
+    <h2 class="section-h">Specialty 01 — <em>Neurology</em></h2>
+    <p class="section-sub">Electrodes, monitoring devices, and diagnostic tools used by neurologists and neurodiagnostic teams every day. We focused on signal quality, ease of use, and how these things actually get used in the room.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="badge">Flagship · FDA Cleared</div>
+        <div class="card-label">Point-of-Care Nerve Conduction</div>
+        <h3>DPNCheck®</h3>
+        <p>FDA-cleared point-of-care device for nerve conduction testing. Gives clinicians objective, quantitative NCS results in primary care settings in under five minutes, with no specialist referral needed.</p>
+        <ul>
+          <li>Objective NCS results in under 5 minutes</li>
+          <li>No specialist referral needed; works in primary care</li>
+          <li>Reduces backlog burden on neurology departments</li>
+          <li>Detects neuropathy at an early stage, including in patients who are asymptomatic (ADA Standards of Care 2024)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="badge">Coming Soon</div>
+        <div class="card-label">EMG / Neurodiagnostics</div>
+        <h3>Hypodermic Needle Electrodes</h3>
+        <p>Precision needle electrodes rebuilt with better tip geometry and higher-grade materials. Cleaner signal, less patient discomfort during EMG, and improved grip that reduces hand fatigue during longer procedures.</p>
+        <ul>
+          <li>Engineered for improved signal-to-noise ratio</li>
+          <li>Ergonomic grip reduces physician fatigue</li>
+          <li>Compatible with major EMG platforms</li>
+        </ul>
+        <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
+      </div>
+      <div class="card">
+        <div class="badge">Coming Soon</div>
+        <div class="card-label">Intraoperative Monitoring</div>
+        <h3>IONM Electrode System</h3>
+        <p>Intraoperative neurophysiological monitoring electrodes built for OR conditions. Maintains reliable signal through the full case, with secure adhesion and low artifact even in electrically noisy environments.</p>
+        <ul>
+          <li>Engineered for low-impedance, high-fidelity signal</li>
+          <li>Simplified application for fast OR prep</li>
+          <li>Extended wear time, no signal drift</li>
+        </ul>
+        <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
+      </div>
+      <div class="card">
+        <div class="badge">Coming Soon</div>
+        <div class="card-label">EEG &amp; Surface EMG</div>
+        <h3>Surface Electrode Suite</h3>
+        <p>Surface electrodes for EEG and EMG. Adhesive chemistry optimized for consistent conductivity over longer recording sessions, available in adult and pediatric sizes.</p>
+        <ul>
+          <li>Hypoallergenic, latex-free materials</li>
+          <li>Engineered for consistent gel conductivity across lot sizes</li>
+          <li>Adult and pediatric sizes available</li>
+        </ul>
+        <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="section-h">Specialty 02 — <em>Vascular Access</em></h2>
+    <p class="section-sub">Core vascular access devices used across hospitals every day. We looked at where failure actually happens and rebuilt these products to address it.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="badge">Lead Product</div>
+        <div class="card-label">Catheter Management</div>
+        <h3>SureSet™ Catheter Securement</h3>
+        <p>SureSet was designed to address known risk factors associated with catheter-associated infection such as dislodgement, site access without removal, and user variability.</p>
+        <ul>
+          <li>Designed for one-handed application.</li>
+          <li>Click-close mechanism designed to deliver consistent securement.</li>
+          <li>Transparent window enables site assessment without removal</li>
+        </ul>
+        <div class="device-notice">FDA Class I | 21 CFR 880.5210 | FDA Product Code: KMK</div>
+      </div>
+      <div class="card">
+        <div class="badge">Coming Soon</div>
+        <div class="card-label">Prefilled Flush Syringes</div>
+        <h3>Duoflush™ Prefilled Syringes</h3>
+        <p>Prefilled flush syringes with tamper-evident closure and ergonomic plunger. Cuts prep time at the bedside and lowers the risk of medication errors associated with manually drawn flushes.</p>
+        <ul>
+          <li>24-month shelf life with stable pH</li>
+          <li>Color-coded by flush type for safety</li>
+          <li>Unit-dose format reduces waste</li>
+        </ul>
+        <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
+      </div>
+      <div class="card">
+        <div class="badge">Coming Soon</div>
+        <div class="card-label">Infection Prevention</div>
+        <h3>ClynCap™ IV Caps</h3>
+        <p>Disinfecting caps for needleless connectors. Passive disinfection at every access point, with consistent dwell time built into the design. No scrub protocol changes needed for adoption.</p>
+        <ul>
+          <li>Passive disinfection, no scrub time needed</li>
+          <li>IPA + chlorhexidine formulation</li>
+          <li>Designed for rapid protocol adoption</li>
+        </ul>
+        <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ CLINICAL PAGE ═══════════════ -->
+<div class="page-section" id="page-clinical">
+  <div class="page-hero">
+    <div class="eyebrow">DPNCheck Clinical Evidence</div>
+    <h1>30+ Peer-Reviewed Studies. <em>One Device.</em></h1>
+    <p>The accuracy, reliability, and clinical utility of DPNCheck has been established across more than three decades of independent research published in leading medical journals.</p>
+  </div>
+
+  <div class="content-body">
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-label">Peer-reviewed publications in indexed journals</div></div>
+      <div class="stat-box"><div class="stat-num">Up to 92%</div><div class="stat-label">Sensitivity for detecting diabetic sensorimotor polyneuropathy in clinical studies (Perkins BA et al. Diabetes Care. 2006;29(9):2023–2027)</div></div>
+      <div class="stat-box"><div class="stat-num">Up to 94%</div><div class="stat-label">Specificity vs. traditional nerve conduction studies (Lee et al. PLOS ONE. 2014;9(6):e99956)</div></div>
+      <div class="stat-box"><div class="stat-num">95%</div><div class="stat-label">Specificity when referenced against healthy controls (Hayashi et al. J Diabetes Investig. 2024)</div></div>
+    </div>
+
+    <h2 class="section-h">What the <em>evidence shows.</em></h2>
+    <p class="section-sub">DPNCheck measures sural nerve conduction velocity and sensory nerve action potential amplitude at the point of care. These are widely accepted biomarkers of peripheral nerve function. The device's validity and reliability against conventional EMG-lab nerve conduction studies has been confirmed across multiple independent research groups, patient populations, and clinical settings.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">ICC 0.97</div><div class="stat-label">Inter-rater reliability for conduction velocity (ICC 2,1) (Shibata et al. J Diabetes Investig. 2019, PMID 30659760; Grabowska et al. Sci Rep. 2023)</div></div>
+      <div class="stat-box"><div class="stat-num">ICC 0.94</div><div class="stat-label">Inter-rater reliability across independent operators (Grabowska et al. Sci Rep. 2023)</div></div>
+      <div class="stat-box"><div class="stat-num">30s</div><div class="stat-label">Typical test time per foot; no specialist required</div></div>
+      <div class="stat-box"><div class="stat-num">50%</div><div class="stat-label">Of diabetic peripheral neuropathies are asymptomatic and missed by standard screening (ADA 2024)</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">Clinical <em>publications.</em></h2>
+
+    <div class="pub-list">
+      <div class="pub-item"><div class="pub-year">2024</div><div class="pub-detail"><div class="authors">Hayashi et al.</div><div class="title">Simplified electrophysiological approach combining a point-of-care nerve conduction device and an electrocardiogram produces an accurate diagnosis of diabetic polyneuropathy</div><div class="journal">Journal of Diabetes Investigation, 2024</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2024</div><div class="pub-detail"><div class="authors">Marion et al. (ADA)</div><div class="title">Peripheral Neuropathy: Evaluation of DPNCheck vs. mTCNS in Type 1 Diabetes</div><div class="journal">American Diabetes Association Scientific Sessions, 2024</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2023</div><div class="pub-detail"><div class="authors">Grabowska et al.</div><div class="title">Reliability of a novel point of care device for monitoring diabetic peripheral neuropathy</div><div class="journal">Scientific Reports, 2023</div></div><span class="pub-type">Reliability</span></div>
+      <div class="pub-item"><div class="pub-year">2023</div><div class="pub-detail"><div class="authors">Hoerder S et al.</div><div class="title">Acupuncture in diabetic peripheral neuropathy: neurological outcomes of the randomized acupuncture in diabetic peripheral neuropathy trial</div><div class="journal">World Journal of Diabetes, 2023</div></div><span class="pub-type">RCT</span></div>
+      <div class="pub-item"><div class="pub-year">2023</div><div class="pub-detail"><div class="authors">Hu X et al.</div><div class="title">Structural changes in Schwann cells and nerve fibres in type 1 diabetes: relationship with diabetic polyneuropathy</div><div class="journal">Diabetologia, 2023</div></div><span class="pub-type">Outcomes</span></div>
+      <div class="pub-item"><div class="pub-year">2021</div><div class="pub-detail"><div class="authors">Sloan et al.</div><div class="title">Pathogenesis, diagnosis and clinical management of diabetic sensorimotor peripheral neuropathy</div><div class="journal">Nature Reviews Endocrinology, 2021</div></div><span class="pub-type">Review</span></div>
+      <div class="pub-item"><div class="pub-year">2021</div><div class="pub-detail"><div class="authors">Carmichael et al.</div><div class="title">Advances in Screening, Early Diagnosis and Accurate Staging of Diabetic Neuropathy</div><div class="journal">Frontiers in Endocrinology, 2021</div></div><span class="pub-type">Review</span></div>
+      <div class="pub-item"><div class="pub-year">2021</div><div class="pub-detail"><div class="authors">Didangelos et al.</div><div class="title">Vitamin B12 Supplementation in Diabetic Neuropathy: A 1-Year, Randomized, Double-Blind, Placebo-Controlled Trial</div><div class="journal">Nutrients, 2021</div></div><span class="pub-type">RCT</span></div>
+      <div class="pub-item"><div class="pub-year">2019</div><div class="pub-detail"><div class="authors">Shibata et al.</div><div class="title">Validity and reliability of a point-of-care nerve conduction device in diabetes patients</div><div class="journal">Journal of Diabetes Investigation, 2019</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2019</div><div class="pub-detail"><div class="authors">Bjornsdottir et al.</div><div class="title">A PRPH splice-donor variant associates with reduced sural nerve amplitude and risk of peripheral neuropathy</div><div class="journal">Nature Communications, 2019</div></div><span class="pub-type">Outcomes</span></div>
+      <div class="pub-item"><div class="pub-year">2017</div><div class="pub-detail"><div class="authors">Pafili et al.</div><div class="title">NC-stat (DPNCheck) for the Diagnosis of Diabetic Polyneuropathy</div><div class="journal">Expert Review of Medical Devices, 2017</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2017</div><div class="pub-detail"><div class="authors">Brown et al.</div><div class="title">A Comparison of Screening Tools for the Early Detection of Peripheral Neuropathy in Adults with and without Type 2 Diabetes</div><div class="journal">Journal of Diabetes Research, 2017</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2014</div><div class="pub-detail"><div class="authors">Sharma et al.</div><div class="title">Assessment of Diabetic Neuropathy Using a Point-of-Care Nerve Conduction Device Shows Significant Associations With the LDIFLARE Method and Clinical Neuropathy Scoring</div><div class="journal">Journal of Diabetes Science and Technology, 2014</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2014</div><div class="pub-detail"><div class="authors">Lee et al.</div><div class="title">Reliability and Validity of a Point-of-Care Sural Nerve Conduction Device for Identification of Diabetic Neuropathy</div><div class="journal">PLOS ONE, 2014</div></div><span class="pub-type">Validation</span></div>
+      <div class="pub-item"><div class="pub-year">2006</div><div class="pub-detail"><div class="authors">Perkins et al.</div><div class="title">Validation of a Novel Point-of-Care Nerve Conduction Device for the Detection of Diabetic Sensorimotor Polyneuropathy</div><div class="journal">Diabetes Care, 2006</div></div><span class="pub-type">Validation</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page-section" id="page-contact">
+  <div class="page-hero">
+    <div class="eyebrow">Contact Us</div>
+    <h1>We're easy <em>to reach.</em></h1>
+    <p>Clinicians, health systems, distributors, and purchasing teams are all welcome. We respond within 48 hours.</p>
+  </div>
+
+  <div class="content-body">
+    <h2 class="section-h">Our <em>offices.</em></h2>
+    <div class="office-grid">
+      <div class="office-card">
+        <div class="region">Global Headquarters</div>
+        <div class="city">Auburndale, MA — USA</div>
+        <address>77 Rowe Street, Suite 2C<br>Auburndale, MA 02466-1532<br><br>+1 888 702 5372<br>sureset@aleramedtech.com</address>
+      </div>
+      <div class="office-card">
+        <div class="region">USA Manufacturing</div>
+        <div class="city">Buckley, WA — USA</div>
+        <address>159 W Mason Ave<br>Buckley, WA 98321</address>
+      </div>
+      <div class="office-card">
+        <div class="region">Middle East &amp; North Africa</div>
+        <div class="city">Dubai, UAE</div>
+        <address>2408 One Lake Plaza, 24th Floor<br>Cluster T, Jumeirah Lake Towers<br>Dubai, UAE</address>
+      </div>
+      <div class="office-card">
+        <div class="region">Asia — India</div>
+        <div class="city">Hyderabad &amp; New Delhi</div>
+        <address>25-C Hardware Park, Imarath Kancha<br>Raviryal, Hyderabad 500005<br><br>94 Vishwakarma, Vasundhara Enclave<br>New Delhi 110096</address>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-h">Send us <em>a message.</em></h2>
+    <p class="section-sub">Tell us what you're looking for and we'll connect you with the right person on our team. We respond within 48 hours on business days.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>General Inquiry</h3>
+        <p style="margin-bottom:12px">For general questions about Alera Medtech, our company, or our approach.</p>
+        <address style="font-style:normal; font-size:13px; color:var(--teal)">info@aleramedtech.com</address>
+      </div>
+      <div class="card">
+        <h3>Clinical / Product</h3>
+        <p style="margin-bottom:12px">DPNCheck clinical questions, product inquiries, evaluation sample requests.</p>
+        <address style="font-style:normal; font-size:13px; color:var(--teal)">clinical@aleramedtech.com</address>
+      </div>
+      <div class="card">
+        <h3>Distributor / Partner</h3>
+        <p style="margin-bottom:12px">DMEPOS supplier onboarding, GPO and formulary access, distribution partnerships.</p>
+        <address style="font-style:normal; font-size:13px; color:var(--teal)">partners@aleramedtech.com</address>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:16px">
+      <div class="card">
+        <h3>Contact Form Topics</h3>
+        <ul style="list-style:none; padding:0">
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">General Inquiry</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">DPNCheck — Clinical or Product Question</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">Vascular Access Products</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">Request Evaluation Samples</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">Distributor or Partnership Inquiry</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">Investor Relations</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--rule); font-size:13px; color:var(--muted)">Media or Press</li>
+          <li style="padding:6px 0; font-size:13px; color:var(--muted)">Other</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-size:20px; font-weight:700; color:white; margin-bottom:8px">alera</div>
+      <p>Medical devices for neurology and vascular access, re-engineered with better materials, safety features and ergonomic design than what the market currently offers.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#" onclick="showPage('products')">DPNCheck®</a>
+      <a href="#" onclick="showPage('products')">Neurology</a>
+      <a href="#" onclick="showPage('products')">Vascular Access</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#" onclick="showPage('about')">About Us</a>
+      <a href="#" onclick="showPage('about')">Our Approach</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#" onclick="showPage('contact')">Contact Us</a>
+      <a href="#" onclick="showPage('contact')">Distributors</a>
+      <a href="https://www.linkedin.com/company/alera-medtech" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Alera Medtech, Inc. All rights reserved. &nbsp;|&nbsp;
+    <a href="#" style="color:rgba(255,255,255,0.3); text-decoration:none">Privacy Policy</a> &nbsp;|&nbsp;
+    <a href="#" style="color:rgba(255,255,255,0.3); text-decoration:none">Terms of Use</a> &nbsp;|&nbsp;
+    <a href="#" style="color:rgba(255,255,255,0.3); text-decoration:none">Regulatory</a>
+  </div>
+</footer>
+
+<script>
+function showPage(id) {
+  // Hide all pages
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+  // Show target
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+  return false;
+}
+</script>
+
+</body>
+</html>
