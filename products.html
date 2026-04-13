@@ -1009,40 +1009,15 @@
     }
 
     /* ─── DISCLAIMER ────────────────────────────────────────── */
-    .global-disclaimer {
-      background: var(--brand-tint);
-      padding: 48px 56px;
-      border-bottom: 1px solid var(--border-mid);
-      margin-top: 64px;
-      position: relative;
-      z-index: 10;
-      text-align: center;
+    .global-disclaimer{
+       padding: 80px 24px 0 24px;
+       max-width:1100px ;
+       margin: 0 auto;
     }
 
-    .disclaimer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .disclaimer { background: #fff8e8; border: 1px solid #c8963a; border-left: 4px solid #c8963a; padding: 16px 20px; border-radius: 4px;  font-size: 13px; color: #5a4010; line-height: 1.7; font-weight: 500; } .disclaimer strong { color: #7A5010; } .device-notice { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #c8963a; background: #fff8e8; border: 1px solid #e8c840; padding: 3px 8px; border-radius: 2px; }
 
-    .disclaimer-title {
-      font-family: 'Manrope', sans-serif;
-      font-weight: 800;
-      font-size: .85rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--brand);
-      margin-bottom: 16px;
-    }
-
-    .disclaimer-text {
-      font-size: .88rem;
-      line-height: 1.7;
-      color: var(--slate);
-    }
-
-    .disclaimer-text p+p {
-      margin-top: 16px;
-    }
+    
 
     @media (max-width: 768px) {
       nav {
@@ -1143,10 +1118,7 @@
         justify-content: center;
       }
 
-      .global-disclaimer {
-        padding: 40px 24px;
-        margin-top: 56px;
-      }
+      
     }
   </style>
 </head>
@@ -1191,21 +1163,6 @@
     </button>
   </nav>
 
-  <!-- ── GLOBAL DISCLAIMER ── -->
-  <section class="global-disclaimer">
-    <div class="disclaimer-container">
-      <div class="disclaimer-title">Global Product Disclaimer</div>
-      <div class="disclaimer-text">
-        <p>Products shown on this website may include devices that are commercially available as well as products under
-          development or pending regulatory review. Product specifications, availability, and regulatory status may
-          change without notice.</p>
-        <p>Not all products are approved or available for sale in all countries. Regulatory approvals, clearances, and
-          indications for use vary by jurisdiction. Customers and users should confirm the current product status and
-          country-specific regulatory approval with us before purchase, distribution, or clinical use.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ── PAGE HERO ── -->
   <div class="page-hero">
     <div class="hero-grid"></div>
@@ -1218,6 +1175,15 @@
     <h1 class="syne">Legacy Devices.<br><em>Reimagined.</em></h1>
     <p class="page-hero-sub">Neurology and Vascular Access Devices. Each one built to fix a specific problem that the
       existing device didn't solve.</p>
+  </div>
+
+  <!-- ── GLOBAL DISCLAIMER ── -->
+  <div class="global-disclaimer">
+    <div class="container">
+      <div class="disclaimer">
+      <strong>Global Product Disclaimer:</strong> Products shown on this website may include devices that are commercially available as well as products under development or pending regulatory review. Product specifications, availability, and regulatory status may change without notice. Not all products are approved or available for sale in all countries. Regulatory approvals, clearances, and indications for use vary by jurisdiction. Customers and users should confirm the current product status and country-specific regulatory approval with us before purchase, distribution, or clinical use.
+    </div>
+    </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════ -->
@@ -1247,10 +1213,7 @@
           </div>
           <div class="card-eyebrow-lg">Point-of-Care Nerve Conduction</div>
           <div class="card-name-lg syne">DPNCheck®</div>
-          <p class="card-desc-lg">FDA-cleared point-of-care device for nerve conduction testing. Gives clinicians
-            objective, quantitative NCS results in primary care settings in under five minutes, with no specialist
-            referral needed. Most patients with diabetic peripheral neuropathy go undetected until nerve damage is
-            already advanced. DPNCheck addresses that gap directly.</p>
+          <p class="card-desc-lg">FDA-cleared point-of-care device for nerve conduction testing. Gives clinicians objective, quantitative NCS results in primary care settings in under five minutes, with no specialist referral needed.</p>
           <div class="card-benefits-lg">
             <div class="benefit-lg">
               <div class="b-dot-lg"></div>Objective NCS results in under 5 minutes
@@ -1262,10 +1225,10 @@
               <div class="b-dot-lg"></div>Reduces backlog burden on neurology departments
             </div>
             <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Detects neuropathy before nerves are damaged or dead
+              <div class="b-dot-lg"></div>Detects neuropathy at an early stage, including in patients who are asymptomatic (ADA Standards of Care 2024)
             </div>
           </div>
-          <a href="products.html" class="card-link-lg">Full Overview →</a>
+          <!-- <a href="products.html" class="card-link-lg">Full Overview →</a> -->
         </div>
       </div>
 
@@ -1273,8 +1236,8 @@
       <div class="product-card">
         <div class="card-body">
           <div class="card-eyebrow">EMG / Neurodiagnostics</div>
-          <div class="card-name syne">Precision Needle Electrodes</div>
-          <p class="card-desc">Hypodermic needle electrodes rebuilt with better tip geometry and higher-grade materials.
+          <div class="card-name syne">Hypodermic Needle Electrodes</div>
+          <p class="card-desc">Precision needle electrodes rebuilt with better tip geometry and higher-grade materials.
             Cleaner signal, less patient discomfort during EMG, and an improved grip that reduces hand fatigue during
             longer procedures.</p>
           <div class="card-benefits">
@@ -1287,6 +1250,7 @@
             <div class="benefit">
               <div class="b-dot"></div>Compatible with major EMG platforms
             </div>
+            <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
           </div>
         </div>
         <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
@@ -1310,6 +1274,7 @@
             <div class="benefit">
               <div class="b-dot"></div>Extended wear time, no signal drift
             </div>
+            <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
           </div>
         </div>
         <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
@@ -1332,6 +1297,7 @@
             <div class="benefit">
               <div class="b-dot"></div>Adult and pediatric sizes available
             </div>
+            <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
           </div>
         </div>
         <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
@@ -1366,26 +1332,20 @@
           </div>
           <div class="card-eyebrow-lg">Catheter Management</div>
           <div class="card-name-lg syne">SureSet™ Catheter Securement</div>
-          <p class="card-desc-lg">SureSet was designed to address the known risk factors associated with
-            catheter-associated infection such as dislodgement, site access without removal, and user variability. The
-            current standard relies on
-            tape and suture, which varies widely by user and fails under real ward conditions. SureSet uses integrated
-            antimicrobial design and one-handed application to take that variability out of the equation.</p>
+          <p class="card-desc-lg">SureSet was designed to address known risk factors associated with catheter-associated infection such as dislodgement, site access without removal, and user variability.</p>
           <div class="card-benefits-lg">
             <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Integrated antimicrobial barrier at insertion site
+              <div class="b-dot-lg"></div>Designed for one-handed application.
             </div>
             <div class="benefit-lg">
-              <div class="b-dot-lg"></div>One-handed application reduces nursing time
-            </div>
-            <div class="benefit-lg">
-              <div class="b-dot-lg"></div>Standardized hold force across all users
+              <div class="b-dot-lg"></div>Click-close mechanism designed to deliver consistent securement.
             </div>
             <div class="benefit-lg">
               <div class="b-dot-lg"></div>Transparent window enables site assessment without removal
             </div>
+            <div class="device-notice">FDA Class I | 21 CFR 880.5210 | FDA Product Code: KMK</div>
           </div>
-          <a href="products.html" class="card-link-lg">Full Overview →</a>
+          <!-- <a href="products.html" class="card-link-lg">Full Overview →</a> -->
         </div>
       </div>
 
@@ -1394,8 +1354,7 @@
         <div class="card-body">
           <div class="card-eyebrow">Prefilled Flush Syringes</div>
           <div class="card-name syne">Duoflush™ Prefilled Syringes</div>
-          <p class="card-desc">Prefilled flush syringes with tamper-evident closure and ergonomic plunger. Cuts prep
-            time at the bedside and lowers the risk of medication errors associated with manually drawn flushes (Bertoglio S, et al. J Hosp Infect. 2013;84(1):85-7. DOI: 10.1016/j.jhin.2013.02.008).</p>
+          <p class="card-desc">Prefilled flush syringes with tamper-evident closure and ergonomic plunger. Cuts prep time at the bedside and lowers the risk of medication errors associated with manually drawn flushes.</p>
           <div class="card-benefits">
             <div class="benefit">
               <div class="b-dot"></div>24-month shelf life with stable pH
@@ -1406,6 +1365,7 @@
             <div class="benefit">
               <div class="b-dot"></div>Unit-dose format reduces waste
             </div>
+            <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
           </div>
         </div>
         <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
@@ -1428,6 +1388,7 @@
             <div class="benefit">
               <div class="b-dot"></div>Designed for rapid protocol adoption
             </div>
+            <div class="device-notice">Not yet commercially available. Pending regulatory review.</div>
           </div>
         </div>
         <div class="card-foot"><a href="products.html" class="card-link">COMING SOON</a></div>
@@ -1437,7 +1398,7 @@
   </section>
 
   <!-- ── CTA BANNER ── -->
-  <div class="cta-banner">
+  <!-- <div class="cta-banner">
     <div>
       <div class="cta-label">Get in Touch</div>
       <div class="cta-title syne">Talk to our team.</div>
@@ -1446,9 +1407,9 @@
     </div>
     <div class="cta-actions">
       <a href="contact.html" class="btn-white">Contact Our Team</a>
-      <!--<a href="resources.html#samples" class="btn-outline-white">Request Samples</a>-->
+     
     </div>
-  </div>
+  </div> -->
 
   <!-- ── FOOTER ── -->
   <footer>
